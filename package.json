@@ -9,12 +9,13 @@
     "build": "node pipeline/run.mjs build",
     "build:all": "node pipeline/run.mjs build --all",
     "new-game": "node pipeline/new-game.mjs",
+    "ideas": "node pipeline/ideas.mjs",
     "audit": "node pipeline/audit.mjs",
     "pack": "node pipeline/pack.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "npm run typecheck && npm test && npm run build:all && npm run audit -- --all && npm run test:e2e"
+    "check": "npm run ideas -- --check && npm run typecheck && npm test && npm run build:all && npm run audit -- --all && npm run test:e2e"
   },
   "engines": {
     "node": ">=20"
