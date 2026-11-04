@@ -11,7 +11,7 @@ export const TOYS: ToyKind[] = [
   { shape: 'ball', color: 0xe03131, accent: 0xffc9c9 }, // 0 red ball
   { shape: 'ball', color: 0x1c7ed6, accent: 0xa5d8ff }, // 1 blue ball
   { shape: 'ball', color: 0xf59f00, accent: 0xffec99 }, // 2 gold ball
-  { shape: 'ball', color: 0x2f9e44, accent: 0xb2f2bb }, // 3 green ball
+  { shape: 'ball', color: 0xe9ecef, accent: 0x74c0fc }, // 3 white ball
   { shape: 'cone', color: 0x8d5524, accent: 0xd9a066 }, // 4 brown pine cone
   { shape: 'cone', color: 0xadb5bd, accent: 0xf8f9fa }, // 5 silver pine cone
   { shape: 'cone', color: 0xd6336c, accent: 0xfcc2d7 }, // 6 pink pine cone

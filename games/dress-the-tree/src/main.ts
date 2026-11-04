@@ -7,10 +7,12 @@ import { SaveStore } from '@engine/save';
 import { lockPageGestures } from '@engine/ui';
 import { locales } from '../content/locales';
 import { config } from '../game.config';
-import { CTX, type GameContext, type SaveData } from './context';
+import { CTX, DEFAULT_SAVE, type GameContext, type SaveData } from './context';
 import { GameScene } from './scenes/GameScene';
+import { LevelsScene } from './scenes/LevelsScene';
 import { MenuScene } from './scenes/MenuScene';
-import { OverScene } from './scenes/OverScene';
+import { OverlayScene } from './scenes/OverlayScene';
+import { Sfx } from './sfx';
 
 async function boot() {
   lockPageGestures();
@@ -18,7 +20,7 @@ async function boot() {
   const t = createI18n(locales, platform.lang);
   document.documentElement.lang = t.lang;
   document.title = t.lang === 'ru' ? config.title.ru : config.title.en;
-  const save = await SaveStore.load<SaveData>(platform, { best: 0, muted: false });
+  const save = await SaveStore.load<SaveData>(platform, { ...DEFAULT_SAVE });
 
   const game = new Phaser.Game({
     type: Phaser.AUTO,
@@ -30,7 +32,7 @@ async function boot() {
       width: config.width,
       height: config.height,
     },
-    scene: [MenuScene, GameScene, OverScene],
+    scene: [MenuScene, LevelsScene, GameScene, OverlayScene],
   });
 
   const audio = new AudioGate(game);
@@ -46,7 +48,7 @@ async function boot() {
     else if (!paused && pausedBySystem) { pausedBySystem = false; resumeAll(); }
   });
 
-  const ctx: GameContext = { config, platform, t, save, ads, audio };
+  const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game) };
   game.registry.set(CTX, ctx);
 
   game.events.once(Phaser.Core.Events.READY, () => {
