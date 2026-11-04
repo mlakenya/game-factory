@@ -2,8 +2,8 @@
 // Usage:
 //   npm run ideas                     list ideas grouped by status
 //   npm run ideas -- --check          validate knowledge/ideas.md against concepts/ and games/ (part of npm run check)
-//   npm run ideas -- next             print the next free idea ID
-//   npm run ideas -- set I-003 одобрен   change an idea's status
+//   npm run ideas -- next             print the next free idea number
+//   npm run ideas -- set 3 одобрен   change an idea's status
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -28,7 +28,7 @@ export function checkIdeas() {
   return errors.concat(
     validateIdeas(rows, {
       conceptExists: (s) => existsSync(conceptPath(s)),
-      conceptIdeaId: (s) => readFileSync(conceptPath(s), 'utf8').match(/\*\*Идея:\*\*\s*(I-\d+)/)?.[1] ?? null,
+      conceptIdeaId: (s) => readFileSync(conceptPath(s), 'utf8').match(/\*\*Идея:\*\*\s*(\d+)/)?.[1] ?? null,
       games,
     }),
   );

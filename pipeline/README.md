@@ -4,7 +4,7 @@
 |---|---|---|
 | `npm run dev -- <id>` | `run.mjs dev` | Dev-сервер игры или шаблона |
 | `npm run build -- <id>` / `build:all` | `run.mjs build` | Сборка в `dist/<id>/` |
-| `npm run ideas` / `-- --check` / `-- next` / `-- set I-001 одобрен` | `ideas.mjs` | Реестр идей `knowledge/ideas.md`: список, проверка, следующий ID, смена статуса |
+| `npm run ideas` / `-- --check` / `-- next` / `-- set 1 одобрен` | `ideas.mjs` | Реестр идей `knowledge/ideas.md`: список, проверка, следующий номер, смена статуса |
 | `npm run new-game -- <id> [--template blank]` | `new-game.mjs` | Новая игра из шаблона; только для идеи со статусом «одобрен» |
 | `npm run audit -- <id>` / `-- --all` | `audit.mjs` | Линтер требований Яндекса по сборке |
 | `npm run pack -- <id>` | `pack.mjs` | build + audit + zip в `release/<id>/` |

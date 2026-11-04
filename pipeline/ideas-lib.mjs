@@ -11,7 +11,7 @@ export const NEEDS_CONCEPT = ['концепт', 'одобрен', 'в разра
 /** Statuses that allow games/<slug> to exist. */
 export const GAME_STATUSES = ['в разработке', 'выпущена'];
 
-export const COLUMNS = ['ID', 'Идея', 'Статус', 'Скан', 'Концепт', 'Заметка'];
+export const COLUMNS = ['№', 'Идея', 'Статус', 'Скан', 'Концепт', 'Заметка'];
 
 const EMPTY = new Set(['', '—', '-']);
 const cell = (s) => (EMPTY.has(s.trim()) ? '' : s.trim());
@@ -25,7 +25,7 @@ export function conceptSlug(raw) {
 }
 
 /**
- * Parse the registry markdown. Returns rows of the first table whose header starts with "ID".
+ * Parse the registry markdown. Returns rows of the first table whose header starts with "№".
  * @param {string} md
  * @returns {{ rows: Array<{line:number,id:string,title:string,status:string,scan:string,concept:string,note:string}>, errors: string[] }}
  */
@@ -42,7 +42,7 @@ export function parseIdeas(md) {
     }
     const cells = line.replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
     if (!inTable) {
-      if (cells[0] === 'ID') {
+      if (cells[0] === COLUMNS[0]) {
         inTable = true;
         if (cells.join('|') !== COLUMNS.join('|')) errors.push(`строка ${i + 1}: колонки должны быть: ${COLUMNS.join(' | ')}`);
       }
@@ -56,7 +56,7 @@ export function parseIdeas(md) {
     const [id, title, status, scan, concept, note] = cells;
     rows.push({ line: i + 1, id, title: cell(title), status, scan: cell(scan), concept: conceptSlug(concept), note: cell(note) });
   }
-  if (!inTable) errors.push('не найдена таблица с колонкой ID');
+  if (!inTable) errors.push('не найдена таблица с колонкой №');
   return { rows, errors };
 }
 
@@ -71,9 +71,9 @@ export function validateIdeas(rows, fs) {
   const seenIds = new Set();
   const seenSlugs = new Set();
   for (const r of rows) {
-    const at = `строка ${r.line} (${r.id || 'без ID'})`;
-    if (!/^I-\d{3,}$/.test(r.id)) errors.push(`${at}: ID в формате I-001`);
-    if (seenIds.has(r.id)) errors.push(`${at}: ID повторяется`);
+    const at = `строка ${r.line} (${r.id || 'без номера'})`;
+    if (!/^[1-9]\d*$/.test(r.id)) errors.push(`${at}: номер идеи — целое число: 1, 2, 3`);
+    if (seenIds.has(r.id)) errors.push(`${at}: номер повторяется`);
     seenIds.add(r.id);
     if (!r.title) errors.push(`${at}: пустое название идеи`);
     if (!STATUSES.includes(r.status)) errors.push(`${at}: статус «${r.status}» не из списка: ${STATUSES.join(', ')}`);
@@ -97,25 +97,20 @@ export function validateIdeas(rows, fs) {
   return errors;
 }
 
-/** Next free ID after the largest existing one. */
+/** Next free number after the largest existing one. */
 export function nextId(rows) {
-  const max = rows.reduce((m, r) => Math.max(m, Number(r.id.replace(/^I-/, '')) || 0), 0);
-  return `I-${String(max + 1).padStart(3, '0')}`;
+  const max = rows.reduce((m, r) => Math.max(m, Number(r.id) || 0), 0);
+  return String(max + 1);
 }
 
-/** Replace the status cell of one row, keeping the rest of the file intact. */
+/** Replace the status cell of one registry row, keeping the rest of the file intact. */
 export function setStatus(md, id, status) {
   if (!STATUSES.includes(status)) throw new Error(`unknown status ${status}`);
-  let done = false;
-  const out = md.split('\n').map((line) => {
-    const cells = line.split('|');
-    if (cells.length > 3 && cells[1].trim() === id) {
-      cells[3] = ` ${status} `;
-      done = true;
-      return cells.join('|');
-    }
-    return line;
-  });
-  if (!done) throw new Error(`no idea ${id}`);
-  return out.join('\n');
+  const row = parseIdeas(md).rows.find((r) => r.id === String(id));
+  if (!row) throw new Error(`no idea ${id}`);
+  const lines = md.split('\n');
+  const cells = lines[row.line - 1].split('|');
+  cells[3] = ` ${status} `;
+  lines[row.line - 1] = cells.join('|');
+  return lines.join('\n');
 }
