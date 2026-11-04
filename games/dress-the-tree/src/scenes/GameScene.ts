@@ -357,11 +357,9 @@ export class GameScene extends Phaser.Scene {
     if (!d.moved && Math.hypot(p.x - d.startX, p.y - d.startY) < this.ctx.config.gameplay.dragThreshold) return;
     if (!d.moved) {
       d.moved = true;
-      // Lift the toy out of the leaning tree so it follows the finger exactly.
-      this.toyLayer.remove(d.img);
-      this.add.existing(d.img);
-      d.img.setOrigin(0.5, 0.45).setRotation(0).setDepth(10).setScale(1.15);
-      this.sprites.delete(slotId(d.slot));
+      // A copy outside the leaning tree follows the finger exactly; the original waits on its hook.
+      d.img.setVisible(false);
+      d.img = this.add.image(p.x, p.y - 30, d.img.texture.key).setOrigin(0.5, 0.45).setDepth(10).setScale(1.15);
     }
     d.img.setPosition(p.x, p.y - 30);
     const target = this.slotAt(p.x, p.y - 30, this.ctx.config.gameplay.dropRadius, this.freeSlot);
