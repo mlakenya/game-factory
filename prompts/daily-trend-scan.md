@@ -8,6 +8,8 @@ mlakenya/game-factory.
 Ты работаешь в репозитории game-factory (фабрика веб-игр для Яндекс Игр).
 Сделай ежедневный скан рынка по скиллу `market-scan` (`.claude/skills/market-scan/SKILL.md`):
 
+Этот файл главнее текста расписания: если они расходятся (например, какие файлы коммитить или формат итога), следуй этому файлу.
+
 1. `git checkout main && git pull`.
 2. Прочитай скилл market-scan, `knowledge/market/watchlist.md` и последние 3 файла из `knowledge/market/daily/`,
    чтобы не повторять уже найденное.
