@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run new-game:*)",
+      "Bash(npm run audit:*)",
+      "Bash(npm run pack:*)",
+      "Bash(npm run typecheck)",
+      "Bash(npm test)",
+      "Bash(npm run test:e2e:*)",
+      "Bash(npm run check)",
+      "Bash(npx playwright test:*)",
+      "Bash(node pipeline/:*)"
+    ]
+  }
+}

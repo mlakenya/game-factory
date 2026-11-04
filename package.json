@@ -1,0 +1,33 @@
+{
+  "name": "game-factory",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Monorepo for Yandex Games web games: shared engine, genre templates, games, pipeline, knowledge base.",
+  "scripts": {
+    "dev": "node pipeline/run.mjs dev",
+    "build": "node pipeline/run.mjs build",
+    "build:all": "node pipeline/run.mjs build --all",
+    "new-game": "node pipeline/new-game.mjs",
+    "audit": "node pipeline/audit.mjs",
+    "pack": "node pipeline/pack.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm test && npm run build:all && npm run audit -- --all && npm run test:e2e"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "phaser": "^4.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^22.20.5",
+    "fflate": "^0.8.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}
