@@ -7,12 +7,8 @@ import { config } from '../../game.config';
  * open promo.html?shot=<name> in a dev build and take a screenshot of the canvas.
  */
 const shot = new URLSearchParams(location.search).get('shot') ?? 'icon-a';
-const SIZES: Record<string, [number, number]> = {
-  icon: [512, 512], cover: [800, 470],
-  // Playgama console covers: exact sizes required.
-  'pg-square': [800, 800], 'pg-portrait': [1080, 1920], 'pg-landscape': [1920, 1080],
-};
-const [w, h] = SIZES[shot] ?? SIZES[shot.split('-')[0]] ?? SIZES.icon;
+const SIZES: Record<string, [number, number]> = { icon: [512, 512], cover: [800, 470] };
+const [w, h] = SIZES[shot.split('-')[0]] ?? SIZES.icon;
 const C = config.colors;
 
 /** A fir tree whose foliage is `height` tall with the apex at (x, y); returns each tier's base line. */
@@ -64,11 +60,8 @@ function hang(scene: Phaser.Scene, c: Phaser.GameObjects.Container, k: number, x
 function sky(scene: Phaser.Scene) {
   const g = scene.add.graphics();
   g.fillGradientStyle(C.backgroundTop, C.backgroundTop, C.backgroundBottom, C.backgroundBottom, 1).fillRect(0, 0, w, h);
-  // Moon (left out where a centered title sits at the top).
-  if (!(shot.startsWith('pg-') && h >= w)) {
-    for (let r = 70; r > 34; r -= 9) g.fillStyle(0xfff6c8, 0.07).fillCircle(w * 0.14, h * 0.16, r);
-    g.fillStyle(0xfff3b0).fillCircle(w * 0.14, h * 0.16, 30);
-  }
+  for (let r = 70; r > 34; r -= 9) g.fillStyle(0xfff6c8, 0.07).fillCircle(w * 0.14, h * 0.16, r);
+  g.fillStyle(0xfff3b0).fillCircle(w * 0.14, h * 0.16, 30);
   g.fillStyle(0xdbe7ff).fillEllipse(w * 0.3, h * 1.02, w * 1.2, h * 0.32);
   g.fillStyle(0xffffff).fillEllipse(w * 0.8, h * 1.05, w * 1.2, h * 0.34);
   const r = (n: number) => Math.abs(Math.sin(n * 12.9898) * 43758.5453) % 1; // fixed "random" for a stable image
@@ -104,27 +97,6 @@ class Promo extends Phaser.Scene {
       hang(this, c, 7, -40, bases[1].y - 75, 1.25); hang(this, c, 1, 60, bases[1].y - 75, 1.15);
       hang(this, c, 3, 0, bases[0].y - 75, 1.15);
       star(this, 218, 75, 51, -20);
-    } else if (shot.startsWith('pg-')) {
-      // Playgama covers (English): the leaning tree with the star sliding off, title beside or above it.
-      const landscape = w > h;
-      const square = w === h;
-      const size = landscape ? h * 0.68 : square ? h * 0.52 : Math.min(w * 0.85, h * 0.5);
-      const tx = landscape ? w * 0.68 : w * 0.5;
-      const ty = landscape ? h * 0.2 : square ? h * 0.4 : h - size * 1.22;
-      const k = size / 320;
-      const { c, bases } = tree(this, tx, ty, size, 3, 7);
-      bases.forEach((b, i) => garland(this, c, b.y - 10 * k, b.half * 0.85, 5 + i));
-      const hk = (t: number, x: number, row: number) => hang(this, c, t, x * k, bases[row].y - 75 * k, 1.05 * k);
-      hk(0, -35, 0); hk(7, 35, 0); hk(1, -85, 1); hk(5, 0, 1); hk(8, 85, 1); hk(9, -115, 2); hk(2, 115, 2);
-      star(this, tx + 27 * k, ty - 10 * k, 44 * k, 22);
-      const fs = landscape ? h * 0.13 : square ? w * 0.11 : w * 0.13;
-      const titleX = landscape ? w * 0.06 : w / 2;
-      const titleY = landscape ? h * 0.26 : square ? h * 0.05 : h * 0.1;
-      this.add.text(titleX, titleY, config.title.en, {
-        fontFamily: 'system-ui, sans-serif', fontSize: `${Math.round(fs)}px`, fontStyle: 'bold', color: '#ffffff',
-        stroke: '#1a1f6e', strokeThickness: fs * 0.15, wordWrap: { width: landscape ? w * 0.42 : w * 0.9 }, lineSpacing: -fs * 0.18,
-        align: landscape ? 'left' : 'center',
-      }).setOrigin(landscape ? 0 : 0.5, 0);
     } else {
       // Cover: leaning tree on the right, title on the left.
       const ru = shot !== 'cover-en';

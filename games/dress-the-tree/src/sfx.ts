@@ -5,8 +5,9 @@ import type { SoundKey } from './audio-files';
 type Note = { f: number; t: number; d: number; type?: OscillatorType; v?: number; slide?: number };
 
 /**
- * Sound effects: synthesized in the Yandex build, audio files from a SampleBank where synthesis
- * is not accepted (Playgama). Both are routed through Phaser's master mute node,
+ * Sound effects: synthesized in the Yandex build; where synthesis is not accepted (Playgama) the same notes
+ * rendered with music-box samples (tools/render-audio.py) play from a SampleBank. Both are routed through
+ * Phaser's master mute node,
  * so AudioGate mutes them during ads and in background tabs. The «Sound» button only turns effects off;
  * music has its own switch (src/music.ts).
  */

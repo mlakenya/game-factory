@@ -15,7 +15,7 @@ export function noteHz(name: string): number {
 
 /**
  * Background music: the waltz from content/music.ts played by a synthesized music box (Yandex build),
- * or the same waltz rendered with music-box samples (tools/render-music.py) where synthesis is not accepted (Playgama).
+ * or the same waltz rendered with music-box samples (tools/render-audio.py) where synthesis is not accepted (Playgama).
  * Notes are scheduled a little ahead on the WebAudio clock and routed through Phaser's master
  * mute node, so the AudioGate silences it during ads, in a hidden tab and when sound is off.
  */
