@@ -14,5 +14,5 @@
 - Сборка для Playgama включает `playgama-bridge.js` — Playgama Bridge SDK (LGPL-3.0, без изменений, отдельным файлом).
 
 ## Обложки Playgama
-Ключевой арт (`release/media/recraft/*.svg`) сгенерирован в Recraft на платном тарифе (коммерческие права у нас),
+Ключевой арт (`release/media/recraft/*.svg`) сгенерирован в Recraft (для релиза — только с платного тарифа: на бесплатном нет коммерческих прав),
 надпись и размеры — `tools/compose-covers.cjs`.
