@@ -12,6 +12,7 @@ import { GameScene } from './scenes/GameScene';
 import { LevelsScene } from './scenes/LevelsScene';
 import { MenuScene } from './scenes/MenuScene';
 import { OverlayScene } from './scenes/OverlayScene';
+import { Music } from './music';
 import { Sfx } from './sfx';
 
 async function boot() {
@@ -48,7 +49,12 @@ async function boot() {
     else if (!paused && pausedBySystem) { pausedBySystem = false; resumeAll(); }
   });
 
-  const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game) };
+  const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game), music: new Music(game) };
+  ctx.music.setEnabled(!save.get('musicOff'));
+  // Browsers allow audio only after the first tap; start the music then.
+  const kick = () => ctx.music.start();
+  window.addEventListener('pointerdown', kick);
+  window.addEventListener('keydown', kick);
   game.registry.set(CTX, ctx);
 
   game.events.once(Phaser.Core.Events.READY, () => {

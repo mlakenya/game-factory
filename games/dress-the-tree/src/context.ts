@@ -4,6 +4,7 @@ import type { createI18n } from '@engine/i18n';
 import type { Platform } from '@engine/platform';
 import type { SaveStore } from '@engine/save';
 import type { GameConfig } from '../game.config';
+import type { Music } from './music';
 import type { Sfx } from './sfx';
 
 export interface SaveData {
@@ -14,9 +15,11 @@ export interface SaveData {
   /** Hints already shown: 'basic' | 'weight' | 'hidden' | 'frozen'. */
   hints: string[];
   muted: boolean;
+  /** Background music off (sound effects stay on). */
+  musicOff: boolean;
 }
 
-export const DEFAULT_SAVE: SaveData = { unlocked: 1, stars: [], hints: [], muted: false };
+export const DEFAULT_SAVE: SaveData = { unlocked: 1, stars: [], hints: [], muted: false, musicOff: false };
 
 /** Shared services, passed to every scene via the registry key 'ctx'. */
 export interface GameContext {
@@ -27,6 +30,7 @@ export interface GameContext {
   ads: Ads;
   audio: AudioGate;
   sfx: Sfx;
+  music: Music;
 }
 
 export const CTX = 'ctx';

@@ -25,7 +25,7 @@ export class MenuScene extends Phaser.Scene {
     });
     [[-70, 300, 0], [60, 270, 7], [-110, 420, 4], [100, 400, 1], [-20, 470, 8], [150, 520, 2], [-160, 530, 9]]
       .forEach(([dx, y, k]) => this.add.image(cx + dx, y, toyKey(k)).setOrigin(0.5, 0).setScale(0.8));
-    const star = this.add.image(cx, 130, 'star').setScale(0.9);
+    const star = this.add.image(cx, 100, 'star').setScale(0.9);
     this.tweens.add({ targets: star, angle: { from: -6, to: 6 }, yoyo: true, repeat: -1, duration: 1400, ease: 'Sine.inOut' });
 
     title(this, cx, 700, ctx.t.lang === 'ru' ? ctx.config.title.ru : ctx.config.title.en, 76);
@@ -39,14 +39,21 @@ export class MenuScene extends Phaser.Scene {
       () => this.scene.start('game', { level: next }), { name: 'btn-play', fontSize: 44 });
 
     const stars = ctx.save.get('stars').reduce((s, n) => s + n, 0);
-    button(this, cx - 115, 1030, 210, 84, ctx.t('menu.stars', { n: stars, total: LEVELS.length * 3 }),
+    button(this, cx - 220, 1030, 200, 84, ctx.t('menu.stars', { n: stars, total: LEVELS.length * 3 }),
       () => this.scene.start('levels'), { color: ctx.config.colors.buttonAlt, fontSize: 30, name: 'btn-levels' });
 
     const soundLabel = () => ctx.t(ctx.audio.isUserMuted ? 'menu.sound.off' : 'menu.sound.on');
-    const sound = button(this, cx + 115, 1030, 210, 84, soundLabel(), () => {
+    const sound = button(this, cx, 1030, 200, 84, soundLabel(), () => {
       ctx.audio.setUserMuted(!ctx.audio.isUserMuted);
       ctx.save.set('muted', ctx.audio.isUserMuted);
       sound.setLabel(soundLabel());
-    }, { color: ctx.config.colors.buttonAlt, fontSize: 28, name: 'btn-sound' });
+    }, { color: ctx.config.colors.buttonAlt, fontSize: 26, name: 'btn-sound' });
+
+    const musicLabel = () => ctx.t(ctx.music.isEnabled ? 'menu.music.on' : 'menu.music.off');
+    const music = button(this, cx + 220, 1030, 200, 84, musicLabel(), () => {
+      ctx.music.setEnabled(!ctx.music.isEnabled);
+      ctx.save.set('musicOff', !ctx.music.isEnabled);
+      music.setLabel(musicLabel());
+    }, { color: ctx.config.colors.buttonAlt, fontSize: 26, name: 'btn-music' });
   }
 }
