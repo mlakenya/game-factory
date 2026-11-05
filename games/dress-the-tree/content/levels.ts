@@ -12,9 +12,9 @@ const pick = (n: number, from = 0) => Array.from({ length: n }, (_, i) => MIX[(f
 
 type Row = [rows: number, kinds: number[], limit: number, hidden: number, frozen: number, seed: number];
 const ROWS: Row[] = [
-  /*  1 */ [2, [0, 1, 2], 0, 0, 0, 1],
-  /*  2 */ [2, [3, 4, 5], 0, 0, 0, 1],
-  /*  3 */ [3, pick(4, 2), 0, 0, 0, 1],
+  /*  1 */ [3, [0, 1, 2], 0, 0, 0, 1],
+  /*  2 */ [3, [3, 7, 4, 8], 0, 0, 0, 1],
+  /*  3 */ [3, pick(5, 2), 0, 0, 0, 1],
   /*  4 */ [3, pick(5, 5), 0, 0, 0, 1],
   /*  5 */ [3, pick(4), 22, 0, 0, 1],
   /*  6 */ [3, pick(4, 3), 18, 0, 0, 1],

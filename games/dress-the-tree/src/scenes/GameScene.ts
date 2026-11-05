@@ -15,7 +15,8 @@ import type { OverlayData } from './OverlayScene';
 const PIVOT = { x: 360, y: 1100 }; // trunk base: the point the whole tree leans around
 const BOTTOM_ROW_Y = 990;
 const TOY_CENTER = 46; // from the hook down to the middle of a toy
-const METER = { x: 360, y: 138, w: 460 };
+const METER = { x: 320, y: 138, w: 420 };
+const TREE_AREA = { top: 190, width: 700 }; // the tree is scaled to fill this, down to the trunk base
 
 const slotId = (s: Slot) => `${s.branch}:${s.hook}`;
 
@@ -31,6 +32,10 @@ export class GameScene extends Phaser.Scene {
 
   private unit = 70;
   private gap = 160;
+  /** Whole-tree scale: small early trees are enlarged so they fill the screen. */
+  private zoom = 1;
+  private starIcons: Phaser.GameObjects.Image[] = [];
+  private shownStars = 3;
   private tree!: Phaser.GameObjects.Container;
   private toyLayer!: Phaser.GameObjects.Container;
   private sprites = new Map<string, Phaser.GameObjects.Image>();
@@ -75,11 +80,14 @@ export class GameScene extends Phaser.Scene {
     const rows = spec.rows;
     const maxDist = Math.max(...this.board.branches.flatMap((b) => b.dist));
     this.unit = Math.min(78, 285 / maxDist);
-    this.gap = Math.min(165, 780 / (rows - 1 + 0.75));
+    this.gap = Math.min(260, 780 / (rows - 1 + 0.75));
+    const naturalH = PIVOT.y - (BOTTOM_ROW_Y - (rows - 1) * this.gap - this.gap * 0.75 - 70);
+    const naturalW = 2 * ((maxDist + 0.75) * this.unit + 12);
+    this.zoom = Math.min((PIVOT.y - TREE_AREA.top) / naturalH, TREE_AREA.width / naturalW, 1.6);
 
     drawBackground(this, this.ctx.config.colors.backgroundTop, this.ctx.config.colors.backgroundBottom);
     this.drawStand();
-    this.tree = this.add.container(PIVOT.x, PIVOT.y);
+    this.tree = this.add.container(PIVOT.x, PIVOT.y).setScale(this.zoom);
     this.drawTree();
     this.toyLayer = this.add.container(0, 0);
     this.tree.add(this.toyLayer);
@@ -128,7 +136,8 @@ export class GameScene extends Phaser.Scene {
 
   private toWorld(lx: number, ly: number) {
     const r = this.tree.rotation, c = Math.cos(r), s = Math.sin(r);
-    return { x: PIVOT.x + lx * c - ly * s, y: PIVOT.y + lx * s + ly * c };
+    const z = this.zoom;
+    return { x: PIVOT.x + (lx * c - ly * s) * z, y: PIVOT.y + (lx * s + ly * c) * z };
   }
 
   /** Centre of the toy on a hook (or of the empty spot under it) in world coordinates. */
@@ -137,7 +146,7 @@ export class GameScene extends Phaser.Scene {
     const r = this.tree.rotation;
     const top = this.toWorld(p.x, p.y);
     // The toy hangs straight down from the hook, regardless of the lean.
-    return { x: top.x, y: top.y + TOY_CENTER, hookX: top.x, hookY: top.y, r };
+    return { x: top.x, y: top.y + TOY_CENTER * this.zoom, hookX: top.x, hookY: top.y, r };
   }
 
   private allSlots(): Slot[] {
@@ -177,17 +186,21 @@ export class GameScene extends Phaser.Scene {
     const g = this.add.graphics();
     const rows = LEVELS[this.level - 1].rows;
     const top = this.rowY(0) - this.gap * 0.75;
-    g.fillStyle(colors.trunk).fillRect(-20, this.rowY(rows - 1), 40, -this.rowY(rows - 1) + 4);
-    // Foliage: one triangle per row, widest at the bottom.
+    g.fillStyle(colors.trunk).fillRect(-22, this.rowY(rows - 1), 44, -this.rowY(rows - 1) + 4);
+    g.fillStyle(0x5a2d0c).fillRect(8, this.rowY(rows - 1), 14, -this.rowY(rows - 1) + 4);
+    // Foliage: one tier per row, widest at the bottom; dark outline, light left side, snow caps.
     for (let row = 0; row < rows; row++) {
       const b = this.board.branches[row * 2];
       const half = (b.dist[b.dist.length - 1] + 0.75) * this.unit;
       const y = this.rowY(row);
       const apex = row === 0 ? top : this.rowY(row - 1) - this.gap * 0.15;
-      g.fillStyle(colors.needlesDark).fillTriangle(0, apex - 6, -half - 10, y + 30, half + 10, y + 30);
-      g.fillStyle(colors.needles).fillTriangle(0, apex, -half, y + 22, half, y + 22);
-      g.fillStyle(0xffffff, 0.85);
-      for (let i = -2; i <= 2; i++) g.fillEllipse(i * half * 0.42, y + 24 + Math.abs(i) * -3, half * 0.36, 12);
+      g.fillStyle(colors.needlesEdge).fillTriangle(0, apex - 10, -half - 14, y + 34, half + 14, y + 34);
+      g.fillStyle(colors.needles).fillTriangle(0, apex, -half, y + 24, half, y + 24);
+      g.fillStyle(colors.needlesLight).fillTriangle(0, apex, -half, y + 24, -half * 0.15, y + 24);
+      // Scalloped hem
+      for (let i = -3; i <= 3; i++) g.fillStyle(colors.needlesDark).fillCircle(i * half * 0.29, y + 24, half * 0.13);
+      g.fillStyle(0xffffff, 0.95);
+      for (let i = -2; i <= 2; i++) g.fillEllipse(i * half * 0.42, y + 22 - Math.abs(i) * 2, half * 0.34, 14);
     }
     this.tree.add(g);
     // Branch bars and hook rings
@@ -207,18 +220,22 @@ export class GameScene extends Phaser.Scene {
     });
     // Garland lights, lit on win
     this.garland = [];
-    const palette = [0xffd43b, 0xff6b6b, 0x74c0fc, 0x8ce99a];
+    const palette = [0xffe14d, 0xff4d6d, 0x4dd2ff, 0x7dff6b, 0xff9f1c];
     for (let row = 0; row < rows; row++) {
       const b = this.board.branches[row * 2];
       const half = (b.dist[b.dist.length - 1] + 0.6) * this.unit;
       for (let i = 0; i <= 8; i++) {
         const x = -half + (2 * half * i) / 8;
-        const l = this.add.circle(x, this.rowY(row) + 16 + Math.sin(i) * 4, 6, palette[(i + row) % 4], 0.25);
+        const yl = this.rowY(row) + 30 + Math.sin(i) * 4;
+        const glow = this.add.circle(x, yl, 14, palette[(i + row) % 5], 0.25);
+        const l = this.add.circle(x, yl, 7, palette[(i + row) % 5], 1);
+        // Gentle twinkle all the time; the win animation speeds it up.
+        this.tweens.add({ targets: glow, alpha: 0.05, duration: 700 + ((i * 137) % 500), yoyo: true, repeat: -1 });
         this.garland.push(l);
-        this.tree.add(l);
+        this.tree.add([glow, l]);
       }
     }
-    this.star = this.add.image(0, top - 16, 'star').setScale(0.8);
+    this.star = this.add.image(0, top - 16, 'star').setScale(0.9);
     this.tree.add(this.star);
   }
 
@@ -242,14 +259,16 @@ export class GameScene extends Phaser.Scene {
     g.fillStyle(0xffffff).fillRect(x - 2, y - 14, 4, 28);
     this.ghost = this.add.triangle(x, y + 26, 0, 0, 24, 0, 12, -20, 0xffffff, 0.45).setVisible(false);
     this.needle = this.add.triangle(x, y + 26, 0, 0, 26, 0, 13, -22, 0xffffff).setStrokeStyle(3, 0x0b1d3a).setVisible(weightOn);
+    // Stars you still keep on this level: one goes out when the needle enters yellow, another in red.
+    this.shownStars = 3;
+    this.starIcons = [0, 1, 2].map((i) => this.add.image(x + w / 2 + 48 + i * 42, y, 'star').setScale(0.38).setVisible(weightOn));
 
-    const spec = LEVELS[this.level - 1];
     const by = 1212;
     this.spareBtn = button(this, 190, by, 300, 96, t('game.spare'), () => this.boostSpare(),
       { color: this.ctx.config.colors.buttonAd, sub: t('game.ad'), fontSize: 32, name: 'btn-spare' });
     this.shuffleBtn = button(this, 530, by, 300, 96, t('game.shuffle'), () => this.boostShuffle(),
       { color: this.ctx.config.colors.buttonAd, sub: t('game.ad'), fontSize: 32, name: 'btn-shuffle' });
-    if (spec.rows <= 2) { this.spareBtn.setVisible(false); this.shuffleBtn.setVisible(false); }
+    if (this.level <= 2) { this.spareBtn.setVisible(false); this.shuffleBtn.setVisible(false); }
   }
 
   /** Rebuilds toy sprites from the board. */
@@ -318,6 +337,12 @@ export class GameScene extends Phaser.Scene {
     const pos = (b: Board) => x + Phaser.Math.Clamp(tilt(b), -1.08, 1.08) * (w / 2) - 13;
     this.tweens.add({ targets: this.needle, x: pos(this.board), duration: 250, ease: 'Sine.out' });
     const danger = Math.abs(tilt(this.board)) >= this.ctx.config.gameplay.dangerTilt;
+    const keep = starsFor(this.maxTilt, this.board.weightOn, this.ctx.config.gameplay.starThresholds);
+    while (this.shownStars > keep) {
+      const icon = this.starIcons[--this.shownStars];
+      icon.setTint(0x3b4a66);
+      this.tweens.add({ targets: icon, scale: { from: 0.6, to: 0.38 }, duration: 300, ease: 'Back.out' });
+    }
     this.needle.setFillStyle(danger ? 0xff6b6b : 0xffffff);
     if (preview && this.board.weightOn) {
       const lost = status(preview) === 'lost';
@@ -359,7 +384,7 @@ export class GameScene extends Phaser.Scene {
       d.moved = true;
       // A copy outside the leaning tree follows the finger exactly; the original waits on its hook.
       d.img.setVisible(false);
-      d.img = this.add.image(p.x, p.y - 30, d.img.texture.key).setOrigin(0.5, 0.45).setDepth(10).setScale(1.15);
+      d.img = this.add.image(p.x, p.y - 30, d.img.texture.key).setOrigin(0.5, 0.45).setDepth(10).setScale(1.15 * this.zoom);
     }
     d.img.setPosition(p.x, p.y - 30);
     const target = this.slotAt(p.x, p.y - 30, this.ctx.config.gameplay.dropRadius, this.freeSlot);
@@ -425,7 +450,7 @@ export class GameScene extends Phaser.Scene {
       const to = this.slotWorld(m.to);
       if (img) {
         img.setVisible(false);
-        const fly = this.add.image(fromPos.x, fromPos.y, toyKey(k)).setOrigin(0.5, 0.45).setDepth(10);
+        const fly = this.add.image(fromPos.x, fromPos.y, toyKey(k)).setOrigin(0.5, 0.45).setDepth(10).setScale(this.zoom);
         this.tweens.add({ targets: fly, x: to.x, y: to.y, duration: 160, ease: 'Sine.out', onComplete: () => { fly.destroy(); img.setVisible(true); } });
       }
     }
@@ -436,7 +461,7 @@ export class GameScene extends Phaser.Scene {
       for (const b of res.cleared) {
         prevHooks[b].forEach((kind, hook) => {
           const p = this.slotWorld({ branch: b, hook });
-          const fly = this.add.image(p.x, p.y, toyKey(kind)).setOrigin(0.5, 0.45).setDepth(9);
+          const fly = this.add.image(p.x, p.y, toyKey(kind)).setOrigin(0.5, 0.45).setDepth(9).setScale(this.zoom);
           this.tweens.add({
             targets: fly, x: box.x, y: box.y - 10, scale: 0.4, duration: 520, delay: 120 + hook * 60, ease: 'Cubic.in',
             onComplete: () => { fly.destroy(); this.tweens.add({ targets: box, scale: 0.95, duration: 80, yoyo: true }); },
