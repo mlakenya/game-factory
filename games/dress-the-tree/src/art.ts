@@ -26,7 +26,6 @@ export function makeTextures(scene: Phaser.Scene) {
       g.fillStyle(toy.accent, 0.55).fillRect(cx - 26, 46, 52, 7);
       g.fillStyle(0xffffff, 0.85).fillCircle(cx - 10, 37, 7);
       g.fillStyle(0xffffff, 0.5).fillCircle(cx - 3, 31, 3);
-      g.fillStyle(0x000000, 0.15).fillCircle(cx + 8, 58, 14);
     } else if (toy.shape === 'cone') {
       g.fillStyle(OUTLINE).fillEllipse(cx, 50, 46, 66);
       g.fillStyle(toy.color).fillEllipse(cx, 50, 40, 60);
@@ -36,7 +35,6 @@ export function makeTextures(scene: Phaser.Scene) {
         const half = row === 0 || row === 3 ? 1 : 2;
         for (let i = -half; i <= half; i++) g.fillTriangle(cx + i * 9 - 4, y, cx + i * 9 + 4, y, cx + i * 9, y + 7);
       }
-      g.fillStyle(0xffffff, 0.6).fillEllipse(cx - 10, 40, 6, 16);
       g.fillStyle(OUTLINE).fillRect(cx - 4, 12, 8, 10);
       g.fillStyle(0x7a4a1e).fillRect(cx - 2, 14, 4, 8);
     } else {

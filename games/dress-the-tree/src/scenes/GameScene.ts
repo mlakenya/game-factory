@@ -188,7 +188,7 @@ export class GameScene extends Phaser.Scene {
     const top = this.rowY(0) - this.gap * 0.75;
     g.fillStyle(colors.trunk).fillRect(-22, this.rowY(rows - 1), 44, -this.rowY(rows - 1) + 4);
     g.fillStyle(0x5a2d0c).fillRect(8, this.rowY(rows - 1), 14, -this.rowY(rows - 1) + 4);
-    // Foliage: one tier per row, widest at the bottom; dark outline, light left side, snow caps.
+    // Foliage: one tier per row, widest at the bottom; dark outline and a lighter left side.
     for (let row = 0; row < rows; row++) {
       const b = this.board.branches[row * 2];
       const half = (b.dist[b.dist.length - 1] + 0.75) * this.unit;
@@ -197,10 +197,6 @@ export class GameScene extends Phaser.Scene {
       g.fillStyle(colors.needlesEdge).fillTriangle(0, apex - 10, -half - 14, y + 34, half + 14, y + 34);
       g.fillStyle(colors.needles).fillTriangle(0, apex, -half, y + 24, half, y + 24);
       g.fillStyle(colors.needlesLight).fillTriangle(0, apex, -half, y + 24, -half * 0.15, y + 24);
-      // Scalloped hem
-      for (let i = -3; i <= 3; i++) g.fillStyle(colors.needlesDark).fillCircle(i * half * 0.29, y + 24, half * 0.13);
-      g.fillStyle(0xffffff, 0.95);
-      for (let i = -2; i <= 2; i++) g.fillEllipse(i * half * 0.42, y + 22 - Math.abs(i) * 2, half * 0.34, 14);
     }
     this.tree.add(g);
     // Branch bars and hook rings
