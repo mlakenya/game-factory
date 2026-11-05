@@ -44,7 +44,7 @@ async function openLevel(page: Page, level: number) {
     JSON.stringify({ unlocked: 30, stars: [], hints: ['basic', 'weight', 'hidden', 'frozen'], muted: true })));
   await page.reload();
   await page.waitForFunction(() => (window as any).__gameReady === true);
-  await tapAt(page, (360 - 115) / W, 1030 / H); // levels
+  await tapAt(page, (360 - 220) / W, 1030 / H); // «stars» button opens the level map
   const i = level - 1;
   await tapAt(page, (360 + ((i % 5) - 2) * 128) / W, (200 + Math.floor(i / 5) * 150) / H);
   await expect.poll(async () => (await state(page))?.level).toBe(level);
