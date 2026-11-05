@@ -48,6 +48,13 @@ async function boot() {
     else if (!paused && pausedBySystem) { pausedBySystem = false; resumeAll(); }
   });
 
+  // Portal mute (Playgama Bridge audio state): silent while the portal asks, also right at startup.
+  let mutedByPortal = false;
+  platform.onAudioChange((enabled) => {
+    if (!enabled && !mutedByPortal) { mutedByPortal = true; audio.pushSystemMute(); }
+    else if (enabled && mutedByPortal) { mutedByPortal = false; audio.popSystemMute(); }
+  });
+
   const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game), music: new Music(game) };
   ctx.sfx.setEnabled(!save.get('muted'));
   ctx.music.setEnabled(!save.get('musicOff'));

@@ -23,6 +23,8 @@ export class YandexPlatform implements Platform {
   readonly name = 'yandex' as const;
   readonly lang: Lang;
   readonly device: Platform['device'];
+  readonly adsPacedByPlatform = false;
+  readonly rewardedSupported = true;
   private player?: Awaited<ReturnType<YSDK['getPlayer']>>;
   private listeners: Array<(p: boolean) => void> = [];
   private gameplayActive = false;
@@ -103,5 +105,6 @@ export class YandexPlatform implements Platform {
   }
 
   onPauseChange(listener: (paused: boolean) => void) { this.listeners.push(listener); }
+  onAudioChange(_listener: (enabled: boolean) => void) { /* no portal mute on this platform */ }
   private emit(p: boolean) { this.listeners.forEach((l) => l(p)); }
 }
