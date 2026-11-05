@@ -4,15 +4,20 @@ type Note = { f: number; t: number; d: number; type?: OscillatorType; v?: number
 
 /**
  * Tiny synthesized sound effects (no audio files). Routed through Phaser's master mute node,
- * so AudioGate mutes them during ads, in background tabs and by the player's setting.
+ * so AudioGate mutes them during ads and in background tabs. The «Sound» button only turns effects off;
+ * music has its own switch (src/music.ts).
  */
 export class Sfx {
+  private enabled = true;
   constructor(private game: Phaser.Game) {}
+
+  setEnabled(on: boolean) { this.enabled = on; }
+  get isEnabled() { return this.enabled; }
 
   private play(notes: Note[]) {
     const sm = this.game.sound as unknown as { context?: AudioContext; destination?: AudioNode; mute: boolean };
     const ctx = sm.context;
-    if (!ctx || !sm.destination || sm.mute) return;
+    if (!this.enabled || !ctx || !sm.destination || sm.mute) return;
     if (ctx.state === 'suspended') ctx.resume().catch(() => undefined);
     const now = ctx.currentTime;
     for (const n of notes) {

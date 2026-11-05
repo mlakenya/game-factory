@@ -42,10 +42,11 @@ export class MenuScene extends Phaser.Scene {
     button(this, cx - 220, 1030, 200, 84, ctx.t('menu.stars', { n: stars, total: LEVELS.length * 3 }),
       () => this.scene.start('levels'), { color: ctx.config.colors.buttonAlt, fontSize: 30, name: 'btn-levels' });
 
-    const soundLabel = () => ctx.t(ctx.audio.isUserMuted ? 'menu.sound.off' : 'menu.sound.on');
+    const soundLabel = () => ctx.t(ctx.sfx.isEnabled ? 'menu.sound.on' : 'menu.sound.off');
     const sound = button(this, cx, 1030, 200, 84, soundLabel(), () => {
-      ctx.audio.setUserMuted(!ctx.audio.isUserMuted);
-      ctx.save.set('muted', ctx.audio.isUserMuted);
+      ctx.sfx.setEnabled(!ctx.sfx.isEnabled);
+      ctx.save.set('muted', !ctx.sfx.isEnabled);
+      if (ctx.sfx.isEnabled) ctx.sfx.pick();
       sound.setLabel(soundLabel());
     }, { color: ctx.config.colors.buttonAlt, fontSize: 26, name: 'btn-sound' });
 

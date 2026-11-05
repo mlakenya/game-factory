@@ -21,6 +21,7 @@ export class Music {
   private nextBarTime = 0;
   private bar = 0;
   private enabled = true;
+  private out: GainNode | undefined;
 
   constructor(private game: Phaser.Game) {}
 
@@ -30,6 +31,9 @@ export class Music {
 
   setEnabled(on: boolean) {
     this.enabled = on;
+    // Silence notes already scheduled ahead right away, not after they finish.
+    const { context } = this.audio;
+    if (this.out && context) this.out.gain.setValueAtTime(on ? 1 : 0, context.currentTime);
     if (on) this.start(); else this.stop();
   }
   get isEnabled() { return this.enabled; }
@@ -51,8 +55,10 @@ export class Music {
   }
 
   private schedule() {
-    const { context, destination } = this.audio;
-    if (!context || !destination) return;
+    const { context, destination: master } = this.audio;
+    if (!context || !master) return;
+    if (!this.out) { this.out = context.createGain(); this.out.connect(master); }
+    const destination = this.out;
     const beat = 60 / TEMPO_BPM;
     // Fell behind (tab was hidden): skip ahead instead of playing a burst of notes.
     if (this.nextBarTime < context.currentTime) this.nextBarTime = context.currentTime + 0.05;

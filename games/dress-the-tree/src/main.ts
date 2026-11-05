@@ -37,7 +37,6 @@ async function boot() {
   });
 
   const audio = new AudioGate(game);
-  audio.setUserMuted(save.get('muted'));
 
   const pauseAll = () => { audio.pushSystemMute(); game.loop.sleep(); };
   const resumeAll = () => { audio.popSystemMute(); game.loop.wake(); };
@@ -50,6 +49,7 @@ async function boot() {
   });
 
   const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game), music: new Music(game) };
+  ctx.sfx.setEnabled(!save.get('muted'));
   ctx.music.setEnabled(!save.get('musicOff'));
   // Browsers allow audio only after the first tap; start the music then.
   const kick = () => ctx.music.start();

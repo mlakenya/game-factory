@@ -99,3 +99,17 @@ test('dress-the-tree: leaning too far drops the star, rewarded brings it back', 
   await expect.poll(async () => (await state(page))?.status).toBe('playing');
   expect((await calls(page)).start).toBeGreaterThan(before.start);
 });
+
+test('dress-the-tree: sound and music buttons switch separate settings', async ({ page }) => {
+  await page.goto(url);
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await page.waitForFunction(() => (window as any).__gameReady === true);
+  const saved = () => page.evaluate(() => JSON.parse(localStorage.getItem('gf-dress-the-tree') ?? '{}'));
+  await tapAt(page, (360 + 220) / W, 1030 / H); // music
+  await expect.poll(async () => (await saved()).musicOff, { timeout: 5000 }).toBe(true);
+  expect((await saved()).muted ?? false).toBe(false);
+  await tapAt(page, 0.5, 1030 / H); // sound
+  await expect.poll(async () => (await saved()).muted, { timeout: 5000 }).toBe(true);
+  expect((await saved()).musicOff).toBe(true);
+});

@@ -14,6 +14,7 @@ export interface SaveData {
   stars: number[];
   /** Hints already shown: 'basic' | 'weight' | 'hidden' | 'frozen'. */
   hints: string[];
+  /** Sound effects off (the «Sound» button). */
   muted: boolean;
   /** Background music off (sound effects stay on). */
   musicOff: boolean;
