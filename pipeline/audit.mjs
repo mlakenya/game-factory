@@ -52,6 +52,11 @@ for (const t of targetsFromArgs(stripTarget(rawArgs))) for (const target of plat
     if (yandexSdk) problems.push('[bridge] в сборке Playgama остался <script src="/sdk.js">');
     try { JSON.parse(readFileSync(join(dist, 'playgama-bridge-config.json'), 'utf8')); }
     catch { problems.push('[bridge] нет или битый playgama-bridge-config.json'); }
+    // [sound-files] Playgama 3.3.2: sound synthesized in code is not accepted, the build must ship audio files
+    const audioFiles = files.filter((f) => /\.(mp3|ogg)$/i.test(f));
+    if (/createOscillator\(/.test(gameSrc) && !audioFiles.length) {
+      problems.push('[sound-files] звук синтезируется в коде, а в сборке нет mp3/ogg (Playgama 3.3.2). См. SampleBank в engine/audio');
+    }
   }
 
   // [paths] all local asset paths must be relative (game is served from a subfolder)

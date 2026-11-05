@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import { Ads } from '@engine/ads';
-import { AudioGate } from '@engine/audio';
+import { AudioGate, SampleBank } from '@engine/audio';
 import { createI18n } from '@engine/i18n';
 import { initPlatform } from '@engine/platform';
 import { SaveStore } from '@engine/save';
@@ -22,6 +22,9 @@ async function boot() {
   document.documentElement.lang = t.lang;
   document.title = t.lang === 'ru' ? config.title.ru : config.title.en;
   const save = await SaveStore.load<SaveData>(platform, { ...DEFAULT_SAVE });
+  // Playgama accepts only sound files (3.3.2); the Yandex build keeps the synthesized music box.
+  // Resolved before the game starts: scenes read the context on their first frame.
+  const soundFiles = import.meta.env.GF_TARGET === 'playgama' ? (await import('./audio-files')).SOUND_FILES : undefined;
 
   const game = new Phaser.Game({
     type: Phaser.AUTO,
@@ -55,7 +58,8 @@ async function boot() {
     else if (enabled && mutedByPortal) { mutedByPortal = false; audio.popSystemMute(); }
   });
 
-  const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game), music: new Music(game) };
+  const files = soundFiles && new SampleBank(game, soundFiles);
+  const ctx: GameContext = { config, platform, t, save, ads, audio, sfx: new Sfx(game, files), music: new Music(game, files) };
   ctx.sfx.setEnabled(!save.get('muted'));
   ctx.music.setEnabled(!save.get('musicOff'));
   // Browsers allow audio only after the first tap; start the music then.

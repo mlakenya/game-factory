@@ -15,7 +15,7 @@ const viteConfig = (t, target) => ({
   base: './', // Yandex serves the game from a subfolder: all asset paths must be relative
   logLevel: 'warn',
   resolve: { alias: { '@engine': join(ROOT, 'engine') } },
-  define: { __GF_TARGET__: JSON.stringify(target) },
+  define: { 'import.meta.env.GF_TARGET': JSON.stringify(target) },
   plugins: targetPlugins(target),
   server: { host: true },
   build: {

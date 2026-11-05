@@ -6,9 +6,12 @@ import { YandexPlatform } from './yandex';
 export type { Platform, AdCallbacks, Lang } from './types';
 export { MockPlatform } from './mock';
 
-/** Build target, injected by pipeline/run.mjs (vite `define`). 'yandex' when built without it (unit tests). */
-declare const __GF_TARGET__: 'yandex' | 'playgama' | undefined;
-export const BUILD_TARGET: 'yandex' | 'playgama' = typeof __GF_TARGET__ === 'undefined' ? 'yandex' : __GF_TARGET__;
+/**
+ * Build target: `import.meta.env.GF_TARGET`, a compile-time constant set by pipeline/run.mjs (vite `define`,
+ * 'yandex' in unit tests). Games test `import.meta.env.GF_TARGET` directly when a branch must vanish
+ * from other builds (with its dynamic imports): bundlers fold it only where it is written inline.
+ */
+export const BUILD_TARGET = import.meta.env.GF_TARGET;
 
 /**
  * Picks the platform for the build target: Yandex SDK or Playgama Bridge when present

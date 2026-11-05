@@ -51,3 +51,22 @@ for (const name of builds) {
     expect(errors, errors.join('\n')).toEqual([]);
   });
 }
+
+// Playgama 3.3.2: sound must come from files. Games that ship audio files must actually load and decode them.
+for (const name of builds.filter((b) => readdirSync(join(dist, b, 'assets')).some((f) => /\.(mp3|ogg)$/.test(f)))) {
+  test(`${name}: sound files load and decode after the first tap`, async ({ page }) => {
+    const audio: string[] = [];
+    const errors: string[] = [];
+    page.on('response', (r) => { if (/\.(mp3|ogg)$/.test(r.url())) audio.push(`${r.status()} ${r.url().split('/').pop()}`); });
+    page.on('pageerror', (e) => errors.push(e.message));
+    page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+    await page.goto(`/${name}/index.html`);
+    await page.waitForFunction(() => (window as any).__gameReady === true, null, { timeout: 15_000 });
+    const box = (await page.locator('canvas').boundingBox())!;
+    await page.mouse.click(box.x + box.width * 0.5, box.y + box.height * 0.5);
+    await expect.poll(() => audio.length, { timeout: 10_000 }).toBeGreaterThan(1);
+    await page.waitForTimeout(1000); // let decodeAudioData finish
+    expect(audio.every((a) => a.startsWith('200 ')), audio.join('\n')).toBe(true);
+    expect(errors, errors.join('\n')).toEqual([]);
+  });
+}
