@@ -12,3 +12,7 @@
   Рендер: `tools/render-audio.py`.
 - Шрифты: системные (`system-ui`), файлов шрифтов нет.
 - Сборка для Playgama включает `playgama-bridge.js` — Playgama Bridge SDK (LGPL-3.0, без изменений, отдельным файлом).
+
+## Обложки Playgama
+Ключевой арт (`release/media/recraft/*.svg`) сгенерирован в Recraft на платном тарифе (коммерческие права у нас),
+надпись и размеры — `tools/compose-covers.cjs`.
