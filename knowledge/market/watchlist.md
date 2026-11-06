@@ -13,7 +13,8 @@
 | Рыбалка | Fish It! в Roblox, «Рыбалка на Машины» в новинках | 2026-11-04 |
 | Физические дуэли / сумо | Cat Battles в Roblox, 3,9 млн визитов в день | 2026-11-05 |
 | Ragdoll-песочницы | Три ragdoll-игры в трендах Roblox; на Яндексе Melon Sandbox (16+) | 2026-11-05 |
-| Прятки / камуфляж | Paint and Hide и MIMIC растут в Roblox | 2026-11-06 |
+| Прятки / камуфляж | Paint and Hide и MIMIC растут в Roblox, Obby: Chameleon в трендах Playgama | 2026-11-06 |
+| «+1 за клик» | Три игры в Top Growth Playgama, +1 Spider Arm в Roblox | 2026-11-06 |
 
 ## Игры
 | Игра | Ссылка | Жанр | Что интересно |
