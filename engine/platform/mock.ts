@@ -8,7 +8,8 @@ export class MockPlatform implements Platform {
   readonly lang: Lang;
   readonly device: Platform['device'];
   readonly adsPacedByPlatform = false;
-  readonly rewardedSupported = true;
+  /** ?rewarded=0 hides rewarded buttons, as on portals without them (CrazyGames preview video). */
+  readonly rewardedSupported: boolean;
   /** Exposed for tests: counts of lifecycle calls. */
   readonly calls = { ready: 0, start: 0, stop: 0, interstitial: 0, rewarded: 0 };
   private listeners: Array<(p: boolean) => void> = [];
@@ -16,6 +17,7 @@ export class MockPlatform implements Platform {
   constructor(opts: { lang?: Lang; storageKey?: string } = {}) {
     const urlLang = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('lang') : null;
     this.lang = opts.lang ?? urlLang ?? 'ru';
+    this.rewardedSupported = typeof location === 'undefined' || new URLSearchParams(location.search).get('rewarded') !== '0';
     this.device = typeof matchMedia !== 'undefined' && matchMedia('(pointer: coarse)').matches ? 'mobile' : 'desktop';
     this.storageKey = opts.storageKey ?? STORAGE_KEY;
     if (typeof document !== 'undefined') {

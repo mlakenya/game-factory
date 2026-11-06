@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Yandex Games requirements linter for built games. Run after build.
- * Usage: npm run audit -- <game...> | --all   [--target yandex|playgama|all]  (--all audits every target)
+ * Usage: npm run audit -- <game...> | --all   [--target yandex|playgama|crazygames|all]  (--all audits every target)
  * Each check maps to an item in .claude/skills/yandex-moderation/SKILL.md. Add a check here
  * every time moderation rejects something that a script could have caught.
  */
@@ -57,6 +57,19 @@ for (const t of targetsFromArgs(stripTarget(rawArgs))) for (const target of plat
     if (/createOscillator\(/.test(gameSrc) && !audioFiles.length) {
       problems.push('[sound-files] звук синтезируется в коде, а в сборке нет mp3/ogg (Playgama 3.3.2). См. SampleBank в engine/audio');
     }
+  } else if (target === 'crazygames') {
+    // CrazyGames technical requirements: docs.crazygames.com/requirements/technical
+    if (yandexSdk) problems.push('[cg-sdk] в сборке CrazyGames остался <script src="/sdk.js">');
+    if (!js.includes('sdk.crazygames.com/crazygames-sdk-v3.js')) problems.push('[cg-sdk] в сборке нет CrazyGames SDK v3 (engine/platform/crazygames.ts)');
+    if (files.some((f) => f.endsWith('playgama-bridge.js'))) problems.push('[cg-sdk] в сборке CrazyGames лежит Playgama Bridge');
+    if (files.length > 1500) problems.push(`[cg-files] ${files.length} файлов > 1500`);
+    if (total > 50e6) problems.push(`[cg-size] ${(total / 1e6).toFixed(1)} МБ > 50 МБ начальной загрузки`);
+    // Same reason as Playgama: the build that goes to a portal other than Yandex plays sound from files.
+    if (/createOscillator\(/.test(gameSrc) && !files.some((f) => /\.(mp3|ogg)$/i.test(f))) {
+      warnings.push('[sound-files] звук только синтезом; для CrazyGames лучше файлы, как в сборке Playgama');
+    }
+    // CrazyGames forbids custom fullscreen buttons (the site has its own).
+    if (/requestFullscreen|startFullscreen|scale\.toggleFullscreen/.test(gameSrc)) problems.push('[cg-fullscreen] своя кнопка полного экрана запрещена на CrazyGames');
   }
 
   // [paths] all local asset paths must be relative (game is served from a subfolder)
@@ -74,6 +87,7 @@ for (const t of targetsFromArgs(stripTarget(rawArgs))) for (const target of plat
   // [direct-sdk] games must not call portal SDKs directly — only engine/platform does
   if (/YaGames|ysdk\./.test(gameSrc)) problems.push('[direct-sdk] прямое обращение к YaGames в коде игры, используйте @engine/platform');
   if (/\bbridge\.(platform|advertisement|storage|initialize)|@playgama\/bridge/.test(gameSrc)) problems.push('[direct-sdk] прямое обращение к Playgama Bridge в коде игры, используйте @engine/platform');
+  if (/CrazyGames\.SDK|crazygames-sdk/.test(gameSrc)) problems.push('[direct-sdk] прямое обращение к CrazyGames SDK в коде игры, используйте @engine/platform');
 
   // [ai] interactive AI inside games is forbidden (rule 1.23)
   if (/api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis/.test(js)) problems.push('[ai] обращение к ИИ-API в игре (правило 1.23)');

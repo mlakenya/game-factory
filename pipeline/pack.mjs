@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Usage: npm run pack -- <game> [--target yandex|playgama|all]
+// Usage: npm run pack -- <game> [--target yandex|playgama|crazygames|all]
 //   → release/<game>/<game>-<date>.zip (Yandex), release/<game>/<game>-playgama-<date>.zip (index.html at archive root)
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';

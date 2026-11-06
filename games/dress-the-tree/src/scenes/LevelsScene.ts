@@ -32,7 +32,7 @@ export class LevelsScene extends Phaser.Scene {
       this.add.text(x, y, String(level), { fontFamily: FONT, fontSize: '36px', color: open ? '#ffffff' : '#7d8aa5', fontStyle: 'bold' })
         .setOrigin(0.5);
       const got = stars[i] ?? 0;
-      if (got > 0) this.add.text(x, y + 62, '★'.repeat(got) + '☆'.repeat(3 - got), { fontFamily: FONT, fontSize: '24px', color: '#ffd43b' }).setOrigin(0.5);
+      if (got > 0) this.add.text(x, y + 62, '★'.repeat(got) + '☆'.repeat(3 - got), { fontFamily: FONT, fontSize: '30px', color: '#ffd43b' }).setOrigin(0.5);
       if (open) {
         const hit = this.add.zone(x, y, 110, 120).setInteractive({ useHandCursor: true }).setName(`level-${level}`);
         hit.on('pointerup', () => this.scene.start('game', { level }));
