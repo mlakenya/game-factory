@@ -13,6 +13,7 @@
 | Рыбалка | Fish It! в Roblox, «Рыбалка на Машины» в новинках | 2026-11-04 |
 | Физические дуэли / сумо | Cat Battles в Roblox, 3,9 млн визитов в день | 2026-11-05 |
 | Ragdoll-песочницы | Три ragdoll-игры в трендах Roblox; на Яндексе Melon Sandbox (16+) | 2026-11-05 |
+| Прятки / камуфляж | Paint and Hide и MIMIC растут в Roblox | 2026-11-06 |
 
 ## Игры
 | Игра | Ссылка | Жанр | Что интересно |
@@ -21,6 +22,7 @@
 | По Полочкам: Большая Сортировка Предметов | https://yandex.ru/games/ | сортировка | Рейтинг 71; ориентир для новогодней сортировки |
 | Кофейное слияние | https://yandex.ru/games/ | merge | Новинка 2026-11-04; взлетит ли |
 | DONT SPLASH (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | хоррор | Самый быстрый рост в Roblox; появятся ли веб-клоны на Яндексе |
+| Throw Food For Animals (Roblox) | https://www.rotrends.com/game/10766972131/Throw-Food-For-Animals | бросок + коллекция | 5-е по онлайну; сигнал к идее 6 |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
 
 ## Разработчики
