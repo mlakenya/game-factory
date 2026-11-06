@@ -7,6 +7,8 @@ export class MockPlatform implements Platform {
   readonly name = 'mock' as const;
   readonly lang: Lang;
   readonly device: Platform['device'];
+  readonly adsPacedByPlatform = false;
+  readonly rewardedSupported = true;
   /** Exposed for tests: counts of lifecycle calls. */
   readonly calls = { ready: 0, start: 0, stop: 0, interstitial: 0, rewarded: 0 };
   private listeners: Array<(p: boolean) => void> = [];
@@ -54,5 +56,6 @@ export class MockPlatform implements Platform {
   }
 
   onPauseChange(listener: (paused: boolean) => void) { this.listeners.push(listener); }
+  onAudioChange(_listener: (enabled: boolean) => void) { /* no portal mute on this platform */ }
   private emit(p: boolean) { this.listeners.forEach((l) => l(p)); }
 }

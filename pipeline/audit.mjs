@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /**
  * Yandex Games requirements linter for built games. Run after build.
- * Usage: npm run audit -- <game...> | --all
+ * Usage: npm run audit -- <game...> | --all   [--target yandex|playgama|all]  (--all audits every target)
  * Each check maps to an item in .claude/skills/yandex-moderation/SKILL.md. Add a check here
  * every time moderation rejects something that a script could have caught.
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, distDir, targetsFromArgs } from './lib.mjs';
+import { stripTarget, targetsFromFlag } from './targets.mjs';
 
 const MAX_BYTES = 100 * 1024 * 1024;
 const walk = (d) => readdirSync(d).flatMap((f) => {
@@ -15,13 +16,15 @@ const walk = (d) => readdirSync(d).flatMap((f) => {
   return statSync(p).isDirectory() ? walk(p) : [p];
 });
 
+const rawArgs = process.argv.slice(2);
+const platforms = targetsFromFlag(rawArgs, { defaultAll: rawArgs.includes('--all') });
 let failed = 0;
-for (const t of targetsFromArgs(process.argv.slice(2))) {
-  const dist = distDir(t);
+for (const t of targetsFromArgs(stripTarget(rawArgs))) for (const target of platforms) {
+  const dist = distDir(t, target);
   const problems = [];
   const warnings = [];
   if (!existsSync(join(dist, 'index.html'))) {
-    console.error(`✖ ${t.kind}/${t.name}: нет сборки, сначала npm run build -- ${t.name}`);
+    console.error(`✖ ${t.kind}/${t.name} [${target}]: нет сборки, сначала npm run build -- ${t.name} --target ${target}`);
     failed++;
     continue;
   }
@@ -35,12 +38,30 @@ for (const t of targetsFromArgs(process.argv.slice(2))) {
   if (total > MAX_BYTES) problems.push(`[size] сборка ${(total / 1e6).toFixed(1)} МБ > 100 МБ`);
   else if (total > 20e6) warnings.push(`[size] ${(total / 1e6).toFixed(1)} МБ — тяжело для мобильных, цель < 20 МБ`);
 
-  // [sdk] SDK script with absolute /sdk.js
-  if (!/<script[^>]+src=["']\/sdk\.js["']/.test(html)) problems.push('[sdk] в index.html нет <script src="/sdk.js">');
+  const yandexSdk = /<script[^>]+src=["']\/sdk\.js["']/.test(html);
+  if (target === 'yandex') {
+    // [sdk] SDK script with absolute /sdk.js
+    if (!yandexSdk) problems.push('[sdk] в index.html нет <script src="/sdk.js">');
+  } else if (target === 'playgama') {
+    // [bridge] Bridge runtime shipped in the build and loaded before the game; Bridge loads /sdk.js itself on Yandex
+    const tag = html.search(/<script[^>]+src=["']\.\/playgama-bridge\.js["']/);
+    const game = html.search(/<script[^>]+type=["']module["']/);
+    if (tag < 0) problems.push('[bridge] в index.html нет <script src="./playgama-bridge.js">');
+    else if (game >= 0 && tag > game) problems.push('[bridge] playgama-bridge.js подключён после кода игры');
+    if (!existsSync(join(dist, 'playgama-bridge.js'))) problems.push('[bridge] в сборке нет playgama-bridge.js');
+    if (yandexSdk) problems.push('[bridge] в сборке Playgama остался <script src="/sdk.js">');
+    try { JSON.parse(readFileSync(join(dist, 'playgama-bridge-config.json'), 'utf8')); }
+    catch { problems.push('[bridge] нет или битый playgama-bridge-config.json'); }
+    // [sound-files] Playgama 3.3.2: sound synthesized in code is not accepted, the build must ship audio files
+    const audioFiles = files.filter((f) => /\.(mp3|ogg)$/i.test(f));
+    if (/createOscillator\(/.test(gameSrc) && !audioFiles.length) {
+      problems.push('[sound-files] звук синтезируется в коде, а в сборке нет mp3/ogg (Playgama 3.3.2). См. SampleBank в engine/audio');
+    }
+  }
 
   // [paths] all local asset paths must be relative (game is served from a subfolder)
   for (const m of html.matchAll(/(?:src|href)=["'](\/[^"'/][^"']*)["']/g)) {
-    if (m[1] !== '/sdk.js') problems.push(`[paths] абсолютный путь в index.html: ${m[1]}`);
+    if (!(target === 'yandex' && m[1] === '/sdk.js')) problems.push(`[paths] абсолютный путь в index.html: ${m[1]}`);
   }
 
   // [external] no external scripts/styles/fonts (CDNs are blocked or slow; moderation flags them)
@@ -50,8 +71,9 @@ for (const t of targetsFromArgs(process.argv.slice(2))) {
   if (!/gameReady\(\)/.test(gameSrc)) problems.push('[lifecycle] игра не вызывает platform.gameReady()');
   if (!/gameplayStart\(\)/.test(gameSrc) || !/gameplayStop\(\)/.test(gameSrc)) problems.push('[lifecycle] нет gameplayStart()/gameplayStop()');
 
-  // [direct-sdk] games must not call YaGames directly — only engine/platform does
+  // [direct-sdk] games must not call portal SDKs directly — only engine/platform does
   if (/YaGames|ysdk\./.test(gameSrc)) problems.push('[direct-sdk] прямое обращение к YaGames в коде игры, используйте @engine/platform');
+  if (/\bbridge\.(platform|advertisement|storage|initialize)|@playgama\/bridge/.test(gameSrc)) problems.push('[direct-sdk] прямое обращение к Playgama Bridge в коде игры, используйте @engine/platform');
 
   // [ai] interactive AI inside games is forbidden (rule 1.23)
   if (/api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis/.test(js)) problems.push('[ai] обращение к ИИ-API в игре (правило 1.23)');
@@ -74,7 +96,7 @@ for (const t of targetsFromArgs(process.argv.slice(2))) {
   // [console] leftover debug logging
   if (/console\.log\(/.test(gameSrc)) warnings.push('[console] console.log в коде игры');
 
-  const name = `${t.kind}/${t.name}`;
+  const name = `${t.kind}/${t.name} [${target}]`;
   if (problems.length) {
     failed++;
     console.error(`✖ ${name}\n${problems.map((p) => '   ' + p).join('\n')}`);

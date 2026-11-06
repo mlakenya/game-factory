@@ -9,6 +9,7 @@ description: Собрать релиз игры для консоли Яндек
 1. Прогон: `npm run check` зелёный, плейтест-отчёт без блокеров.
 2. Чек-лист из скилла `yandex-moderation` — пройти пункты без `[auto]`.
 3. Архив: `npm run pack -- <id>` → `release/<id>/<id>-YYYY-MM-DD.zip` (index.html в корне, сборка уже проверена audit).
+   Для Playgama: `npm run pack -- <id> --target playgama` → `release/<id>/<id>-playgama-YYYY-MM-DD.zip`; требования и отличия — скилл `platform-sdk`.
 4. Тексты в `games/<id>/release/texts.md` (RU и EN):
    - Название (до ~50 символов, без «лучшая», «топ», капса).
    - Короткое описание: что делает игрок, одной фразой.

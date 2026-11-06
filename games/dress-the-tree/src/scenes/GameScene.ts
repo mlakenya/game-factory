@@ -54,6 +54,8 @@ export class GameScene extends Phaser.Scene {
   private selected: Slot | null = null;
   private drag: { slot: Slot; img: Phaser.GameObjects.Image; startX: number; startY: number; moved: boolean } | null = null;
   private lastCreak = 0;
+  /** A rewarded revive was used in this attempt (restart = new attempt). */
+  private revived = false;
 
   constructor() { super('game'); }
 
@@ -70,6 +72,7 @@ export class GameScene extends Phaser.Scene {
     this.maxTilt = 0;
     this.busy = false;
     this.ended = false;
+    this.revived = false;
     this.selected = null;
     this.drag = null;
     this.sprites.clear();
@@ -264,7 +267,7 @@ export class GameScene extends Phaser.Scene {
       { color: this.ctx.config.colors.buttonAd, sub: t('game.ad'), fontSize: 32, name: 'btn-spare' });
     this.shuffleBtn = button(this, 530, by, 300, 96, t('game.shuffle'), () => this.boostShuffle(),
       { color: this.ctx.config.colors.buttonAd, sub: t('game.ad'), fontSize: 32, name: 'btn-shuffle' });
-    if (this.level <= 2) { this.spareBtn.setVisible(false); this.shuffleBtn.setVisible(false); }
+    if (this.level <= 2 || !this.ctx.ads.rewardedAvailable) { this.spareBtn.setVisible(false); this.shuffleBtn.setVisible(false); }
   }
 
   /** Rebuilds toy sprites from the board. */
@@ -547,7 +550,8 @@ export class GameScene extends Phaser.Scene {
 
   private async next() {
     const { interstitialFromLevel, interstitialEvery } = this.ctx.config.ads;
-    if (interstitialAfterWin(this.level, interstitialFromLevel, interstitialEvery)) await this.ctx.ads.interstitial();
+    // Portals that pace ads themselves (Playgama) want a request at every level transition.
+    if (this.ctx.ads.atEveryPause || interstitialAfterWin(this.level, interstitialFromLevel, interstitialEvery)) await this.ctx.ads.interstitial();
     this.scene.restart({ level: this.level + 1 });
   }
 
@@ -567,7 +571,9 @@ export class GameScene extends Phaser.Scene {
         heading: t('lose.title'),
         text: t('lose.text'),
         actions: [
-          { label: t('lose.revive'), sub: t('game.ad'), color: this.ctx.config.colors.buttonAd, name: 'btn-revive', onClick: () => this.revive(falling) },
+          // Revive by rewarded ad: at most once per attempt (Playgama 2.2.4), only where rewarded ads exist.
+          ...(this.revived || !this.ctx.ads.rewardedAvailable ? [] : [
+            { label: t('lose.revive'), sub: t('game.ad'), color: this.ctx.config.colors.buttonAd, name: 'btn-revive', onClick: () => this.revive(falling) }]),
           { label: t('lose.retry'), name: 'btn-retry', onClick: () => this.scene.restart({ level: this.level }) },
           { label: t('common.menu'), color: this.ctx.config.colors.buttonAlt, onClick: () => this.toMenu() },
         ],
@@ -579,6 +585,7 @@ export class GameScene extends Phaser.Scene {
   private async revive(falling: Phaser.GameObjects.Image) {
     const ok = await this.ctx.ads.rewarded();
     if (!ok || !this.before) { this.scene.restart({ level: this.level }); return; }
+    this.revived = true;
     this.board = this.before;
     this.before = null;
     falling.destroy();

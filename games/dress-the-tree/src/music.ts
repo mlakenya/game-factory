@@ -1,4 +1,6 @@
 import type * as Phaser from 'phaser';
+import type { SampleBank } from '@engine/audio';
+import type { SoundKey } from './audio-files';
 import { BARS, TEMPO_BPM } from '../content/music';
 
 const SEMI: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
@@ -12,7 +14,8 @@ export function noteHz(name: string): number {
 }
 
 /**
- * Background music: the waltz from content/music.ts played by a synthesized music box.
+ * Background music: the waltz from content/music.ts played by a synthesized music box (Yandex build),
+ * or the same waltz rendered with music-box samples (tools/render-audio.py) where synthesis is not accepted (Playgama).
  * Notes are scheduled a little ahead on the WebAudio clock and routed through Phaser's master
  * mute node, so the AudioGate silences it during ads, in a hidden tab and when sound is off.
  */
@@ -23,7 +26,9 @@ export class Music {
   private enabled = true;
   private out: GainNode | undefined;
 
-  constructor(private game: Phaser.Game) {}
+  private stopFile: (() => void) | undefined;
+
+  constructor(private game: Phaser.Game, private files?: SampleBank<SoundKey>) {}
 
   private get audio() {
     return this.game.sound as unknown as { context?: AudioContext; destination?: AudioNode };
@@ -41,6 +46,10 @@ export class Music {
   /** Safe to call many times; starts only once the audio context exists. */
   start() {
     const { context } = this.audio;
+    if (this.files) {
+      if (this.enabled && !this.stopFile && context) this.stopFile = this.files.play('music', { volume: 0.6, loop: true });
+      return;
+    }
     if (!this.enabled || this.timer || !context) return;
     if (context.state === 'suspended') context.resume().catch(() => undefined);
     this.nextBarTime = context.currentTime + 0.2;
@@ -50,6 +59,8 @@ export class Music {
   }
 
   stop() {
+    this.stopFile?.();
+    this.stopFile = undefined;
     clearInterval(this.timer);
     this.timer = undefined;
   }

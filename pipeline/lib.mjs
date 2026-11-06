@@ -34,7 +34,9 @@ export function targetsFromArgs(args) {
   return names.length ? names.map(resolveTarget) : [resolveTarget(undefined)];
 }
 
-export const distDir = (t) => join(ROOT, 'dist', t.kind === 'games' ? t.name : `_template-${t.name}`);
+/** dist/<game> for Yandex, dist/<game>--<target> for other build targets (see targets.mjs). */
+export const distDir = (t, target = 'yandex') =>
+  join(ROOT, 'dist', (t.kind === 'games' ? t.name : `_template-${t.name}`) + (target === 'yandex' ? '' : `--${target}`));
 
 export function fail(msg) {
   console.error(`✖ ${msg}`);

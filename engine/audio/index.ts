@@ -1,5 +1,7 @@
 import type * as Phaser from 'phaser';
 
+export { SampleBank } from './samples';
+
 /**
  * Global mute that combines the player's setting with platform pauses (ads, hidden tab).
  * Yandex rejects games that keep playing sound during ads or in a background tab.

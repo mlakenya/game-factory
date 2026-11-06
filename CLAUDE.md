@@ -23,9 +23,9 @@ prompts/      промпты для расписаний (ежедневный �
 npm run dev -- <id>            dev-сервер (?lang=en, ?mock)
 npm run ideas                  реестр идей по статусам (-- --check проверка, -- next следующий номер)
 npm run new-game -- <id>       новая игра из одобренного концепта (templates/blank)
-npm run build -- <id>          сборка в dist/<id>
-npm run audit -- <id>          линтер требований Яндекса (после build)
-npm run pack -- <id>           build + audit + zip в release/<id>/
+npm run build -- <id>          сборка в dist/<id> (--target playgama → dist/<id>--playgama, --target all)
+npm run audit -- <id>          линтер требований площадки (после build, тот же --target)
+npm run pack -- <id>           build + audit + zip в release/<id>/ (--target playgama|all)
 npm run check                  всё, что гоняет CI: typecheck, unit, build:all, audit, e2e
 ```
 В облачной сессии Playwright запускать с `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium`.
@@ -41,7 +41,8 @@ npm run check                  всё, что гоняет CI: typecheck, unit, 
 - Разработка (`new-game`) — только при статусе «одобрен». Одобряет только человек.
 
 ## Жёсткие правила
-1. Игра общается с площадкой только через `@engine/platform`. Никаких `YaGames`/`ysdk` в `games/`.
+1. Игра общается с площадкой только через `@engine/platform`. Никаких `YaGames`/`ysdk`/`bridge.*` в `games/`.
+   Площадку выбирает цель сборки: `yandex` (Yandex SDK) или `playgama` (Playgama Bridge, тот же код игры).
 2. `platform.gameReady()` — один раз, когда игра реально готова. `gameplayStart()/gameplayStop()` — на каждый вход/выход из активной игры (меню, пауза, конец уровня, реклама).
 3. Межстраничная реклама — только через `ads.interstitial()` в естественных паузах. Rewarded — только по явной кнопке с понятной наградой. Во время рекламы игра на паузе и без звука.
 4. Все тексты — через i18n, RU обязателен, EN рядом с теми же ключами. Никакого текста в коде сцен.
@@ -58,7 +59,7 @@ Claude готовит варианты и чек-листы, но эти шаг�
 
 ## Скиллы (подгружай по задаче)
 - `yandex-moderation` — требования и прошлые отказы. Перед любым релизом.
-- `platform-sdk` — как пользоваться engine/platform, рекламой, сохранениями.
+- `platform-sdk` — как пользоваться engine/platform, рекламой, сохранениями; сборка под Playgama и её отличия.
 - `concept` — концепт по выбранной идее и решение человека.
 - `new-game` — от одобренного концепта до первого играбельного билда.
 - `release-pack` — zip, медиа и тексты для каталога.
