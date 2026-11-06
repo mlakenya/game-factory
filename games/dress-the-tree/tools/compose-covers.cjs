@@ -4,10 +4,12 @@
  * /mnt/project-files/dress-the-tree/recraft/prompts.md): the art is scaled to the slot, the missing width or
  * height is continued with the art's own edge colours (row/column median, so snowflakes don't streak),
  * and the English title is set on the free sky.
- *   PW_CHROMIUM_PATH=/opt/pw-browsers/chromium node games/dress-the-tree/tools/compose-covers.cjs
+ *   PW_CHROMIUM_PATH=/opt/pw-browsers/chromium node games/dress-the-tree/tools/compose-covers.cjs [playgama|crazygames]
+ * playgama → release/media/playgama/ (title + tagline), crazygames → release/media/crazygames/: CrazyGames
+ * allows only the game title as text and wants portrait 800×1200 (2:3).
  */
 const { chromium } = require('playwright');
-const { readFileSync } = require('node:fs');
+const { mkdirSync, readFileSync } = require('node:fs');
 const { join } = require('node:path');
 
 const media = join(__dirname, '../release/media');
@@ -16,7 +18,7 @@ const TITLE = 'Dress the Tree';
 const TAGLINE = 'Match three. Keep the balance!';
 
 /** Art box inside the slot: x, y, width, height. Free space is filled from the art edge it touches. */
-const COVERS = {
+const PLAYGAMA = {
   landscape: { w: 1920, h: 1080, art: 'landscape', box: [840, 0, 1080, 1080], texts: [
     { text: 'Dress<br>the Tree', size: 168, css: 'left:110px;top:270px;width:760px;line-height:1' },
     { text: TAGLINE, size: 52, css: 'left:116px;top:660px;white-space:nowrap;color:#ffe14d' }] },
@@ -28,6 +30,17 @@ const COVERS = {
   square: { w: 800, h: 800, art: 'square', box: [60, 120, 680, 680], texts: [
     { text: TITLE, size: 82, css: 'left:0;top:14px;width:800px;text-align:center' }] },
 };
+
+const CRAZYGAMES = {
+  landscape: { ...PLAYGAMA.landscape, texts: [
+    { text: 'Dress<br>the Tree', size: 168, css: 'left:110px;top:350px;width:760px;line-height:1' }] },
+  // Tall art fitted by height, the sides continued from its edges, the title on the sky above.
+  portrait: { w: 800, h: 1200, art: 'portrait', box: [40, 120, 720, 1260], cleanTop: 80, texts: [
+    { text: TITLE, size: 96, css: 'left:0;top:24px;width:800px;text-align:center' }] },
+  square: PLAYGAMA.square,
+};
+const SET = process.argv[2] === 'crazygames' ? 'crazygames' : 'playgama';
+const COVERS = SET === 'crazygames' ? CRAZYGAMES : PLAYGAMA;
 
 const page = (c) => `<!doctype html><html><body style="margin:0;width:${c.w}px;height:${c.h}px;position:relative;overflow:hidden">
 <canvas id="c" width="${c.w}" height="${c.h}" style="position:absolute;left:0;top:0"></canvas>
@@ -45,9 +58,12 @@ img.onload = () => {
     for (let i = 0; i < d.length; i += 4) for (let k = 0; k < 3; k++) ch[k].push(d[i + k]);
     return 'rgb(' + ch.map((v) => v.sort((a, b) => a - b)[v.length >> 1]).join(',') + ')'; };
   const g = document.getElementById('c').getContext('2d');
-  for (let y = 0; y < bh; y++) {  // left / right: each row continued with its edge colour
-    if (bx > 0) { g.fillStyle = median(s.getImageData(0, y, 60, 1).data); g.fillRect(0, by + y, bx + 1, 1); }
-    if (bx + bw < C.w) { g.fillStyle = median(s.getImageData(bw - 60, y, 60, 1).data); g.fillRect(bx + bw - 1, by + y, C.w - bx - bw + 1, 1); }
+  // Left / right: each row continued with the median of a 30×41 px edge block around it, so a snowflake
+  // or the moon halo touching the edge does not streak across the whole cover.
+  const edge = (x, y) => { const y0 = Math.max(0, y - 20); return median(s.getImageData(x, y0, 30, Math.min(bh, y + 21) - y0).data); };
+  for (let y = 0; y < bh; y++) {
+    if (bx > 0) { g.fillStyle = edge(0, y); g.fillRect(0, by + y, bx + 1, 1); }
+    if (bx + bw < C.w) { g.fillStyle = edge(bw - 30, y); g.fillRect(bx + bw - 1, by + y, C.w - bx - bw + 1, 1); }
   }
   // Top: plain sky gradient from the game's navy down to the art's first clean row; bottom: last row continued.
   const top = by + C.cleanTop;
@@ -79,7 +95,8 @@ img.src = ${JSON.stringify(art(c.art))};
     const p = await browser.newPage({ viewport: { width: c.w, height: c.h }, deviceScaleFactor: 1 });
     await p.setContent(page(c));
     await p.waitForFunction(() => document.title === 'ready', null, { timeout: 60000 });
-    await p.screenshot({ path: join(media, 'playgama', `cover-${name}.png`) });
+    mkdirSync(join(media, SET), { recursive: true });
+    await p.screenshot({ path: join(media, SET, `cover-${name}.png`) });
     await p.close();
     console.log(`cover-${name}.png ${c.w}×${c.h}`);
   }

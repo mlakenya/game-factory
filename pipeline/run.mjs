@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Usage: node pipeline/run.mjs dev <game> | build <game...> | build --all   [--target yandex|playgama|all]
+// Usage: node pipeline/run.mjs dev <game> | build <game...> | build --all   [--target yandex|playgama|crazygames|all]
 import { createServer, build } from 'vite';
 import { join } from 'node:path';
 import { ROOT, distDir, resolveTarget, targetsFromArgs } from './lib.mjs';
@@ -35,6 +35,8 @@ if (cmd === 'dev') {
   server.printUrls();
   console.log(target === 'playgama'
     ? `  ${t.kind}/${t.name} [playgama]: Bridge работает вне площадки с заглушками. ?mock для нашей заглушки, ?lang=en для английского`
+    : target === 'crazygames'
+    ? `  ${t.kind}/${t.name} [crazygames]: на localhost SDK в режиме local (демо-реклама). ?mock для нашей заглушки`
     : `  ${t.kind}/${t.name}: заглушка платформы активна (Yandex SDK есть только на площадке). ?lang=en для английского`);
 } else if (cmd === 'build') {
   for (const t of targetsFromArgs(args)) {
@@ -44,6 +46,6 @@ if (cmd === 'dev') {
     }
   }
 } else {
-  console.error('Usage: run.mjs dev <game> | build <game...|--all> [--target yandex|playgama|all]');
+  console.error('Usage: run.mjs dev <game> | build <game...|--all> [--target yandex|playgama|crazygames|all]');
   process.exit(1);
 }

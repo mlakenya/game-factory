@@ -1,3 +1,4 @@
+import { CrazyGamesPlatform } from './crazygames';
 import { MockPlatform } from './mock';
 import { PlaygamaPlatform } from './playgama';
 import type { Platform } from './types';
@@ -14,7 +15,7 @@ export { MockPlatform } from './mock';
 export const BUILD_TARGET = import.meta.env.GF_TARGET;
 
 /**
- * Picks the platform for the build target: Yandex SDK or Playgama Bridge when present
+ * Picks the platform for the build target: Yandex SDK, Playgama Bridge or CrazyGames SDK when present
  * (and not forced to mock via ?mock), otherwise MockPlatform.
  * Exposes the instance as window.__platform for tests.
  */
@@ -22,6 +23,7 @@ export async function initPlatform(opts: { storageKey?: string } = {}): Promise<
   const forceMock = new URLSearchParams(location.search).has('mock');
   const real = forceMock ? null
     : BUILD_TARGET === 'playgama' ? await PlaygamaPlatform.create(opts)
+    : BUILD_TARGET === 'crazygames' ? await CrazyGamesPlatform.create(opts)
     : await YandexPlatform.create();
   const platform: Platform = real || new MockPlatform(opts);
   (window as unknown as { __platform: Platform }).__platform = platform;

@@ -23,9 +23,9 @@ prompts/      промпты для расписаний (ежедневный �
 npm run dev -- <id>            dev-сервер (?lang=en, ?mock)
 npm run ideas                  реестр идей по статусам (-- --check проверка, -- next следующий номер)
 npm run new-game -- <id>       новая игра из одобренного концепта (templates/blank)
-npm run build -- <id>          сборка в dist/<id> (--target playgama → dist/<id>--playgama, --target all)
+npm run build -- <id>          сборка в dist/<id> (--target playgama|crazygames → dist/<id>--<цель>, --target all)
 npm run audit -- <id>          линтер требований площадки (после build, тот же --target)
-npm run pack -- <id>           build + audit + zip в release/<id>/ (--target playgama|all)
+npm run pack -- <id>           build + audit + zip в release/<id>/ (--target playgama|crazygames|all)
 npm run check                  всё, что гоняет CI: typecheck, unit, build:all, audit, e2e
 ```
 В облачной сессии Playwright запускать с `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium`.
@@ -41,13 +41,13 @@ npm run check                  всё, что гоняет CI: typecheck, unit, 
 - Разработка (`new-game`) — только при статусе «одобрен». Одобряет только человек.
 
 ## Жёсткие правила
-1. Игра общается с площадкой только через `@engine/platform`. Никаких `YaGames`/`ysdk`/`bridge.*` в `games/`.
-   Площадку выбирает цель сборки: `yandex` (Yandex SDK) или `playgama` (Playgama Bridge, тот же код игры).
+1. Игра общается с площадкой только через `@engine/platform`. Никаких `YaGames`/`ysdk`/`bridge.*`/`CrazyGames.SDK` в `games/`.
+   Площадку выбирает цель сборки: `yandex` (Yandex SDK), `playgama` (Playgama Bridge) или `crazygames` (CrazyGames SDK v3); код игры один.
 2. `platform.gameReady()` — один раз, когда игра реально готова. `gameplayStart()/gameplayStop()` — на каждый вход/выход из активной игры (меню, пауза, конец уровня, реклама).
 3. Межстраничная реклама — только через `ads.interstitial()` в естественных паузах. Rewarded — только по явной кнопке с понятной наградой. Во время рекламы игра на паузе и без звука.
 4. Все тексты — через i18n, RU обязателен, EN рядом с теми же ключами. Никакого текста в коде сцен.
 5. Сохранения — через `SaveStore`, не через localStorage напрямую.
-6. Пути в сборке относительные (`base: './'`), без внешних CDN, шрифтов и скриптов.
+6. Пути в сборке относительные (`base: './'`), без внешних CDN, шрифтов и скриптов. Исключение — SDK площадки, который она требует грузить со своего адреса (`/sdk.js` Яндекса, `sdk.crazygames.com`).
 7. Никакого ИИ внутри игры (правило Яндекса 1.23). Claude делает игру, но не работает в ней.
 8. **Никогда не отключать, не пропускать и не ослаблять тест ради зелёного CI.** Чинить причину.
 9. Изменение в `engine/` должно проходить `npm run check` для всех игр и шаблонов.

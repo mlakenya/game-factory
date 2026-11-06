@@ -10,6 +10,7 @@ description: Собрать релиз игры для консоли Яндек
 2. Чек-лист из скилла `yandex-moderation` — пройти пункты без `[auto]`.
 3. Архив: `npm run pack -- <id>` → `release/<id>/<id>-YYYY-MM-DD.zip` (index.html в корне, сборка уже проверена audit).
    Для Playgama: `npm run pack -- <id> --target playgama` → `release/<id>/<id>-playgama-YYYY-MM-DD.zip`; требования и отличия — скилл `platform-sdk`.
+   Для CrazyGames: `--target crazygames` → `release/<id>/<id>-crazygames-YYYY-MM-DD.zip`; обложки 3 формата и 2 превью-видео (см. `platform-sdk`).
 4. Тексты в `games/<id>/release/texts.md` (RU и EN):
    - Название (до ~50 символов, без «лучшая», «топ», капса).
    - Короткое описание: что делает игрок, одной фразой.

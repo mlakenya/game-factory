@@ -22,9 +22,9 @@ async function boot() {
   document.documentElement.lang = t.lang;
   document.title = t.lang === 'ru' ? config.title.ru : config.title.en;
   const save = await SaveStore.load<SaveData>(platform, { ...DEFAULT_SAVE });
-  // Playgama accepts only sound files (3.3.2); the Yandex build keeps the synthesized music box.
-  // Resolved before the game starts: scenes read the context on their first frame.
-  const soundFiles = import.meta.env.GF_TARGET === 'playgama' ? (await import('./audio-files')).SOUND_FILES : undefined;
+  // Playgama accepts only sound files (3.3.2) and CrazyGames gets the same recorded music box;
+  // the Yandex build keeps the synthesized one. Resolved before the game starts: scenes read the context on their first frame.
+  const soundFiles = import.meta.env.GF_TARGET !== 'yandex' ? (await import('./audio-files')).SOUND_FILES : undefined;
 
   const game = new Phaser.Game({
     type: Phaser.AUTO,
@@ -51,7 +51,7 @@ async function boot() {
     else if (!paused && pausedBySystem) { pausedBySystem = false; resumeAll(); }
   });
 
-  // Portal mute (Playgama Bridge audio state): silent while the portal asks, also right at startup.
+  // Portal mute (Playgama Bridge audio state, CrazyGames muteAudio): silent while the portal asks, also right at startup.
   let mutedByPortal = false;
   platform.onAudioChange((enabled) => {
     if (!enabled && !mutedByPortal) { mutedByPortal = true; audio.pushSystemMute(); }

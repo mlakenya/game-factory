@@ -242,7 +242,7 @@ export class GameScene extends Phaser.Scene {
     const { width } = this.scale.gameSize;
     const t = this.ctx.t;
     title(this, width / 2, 58, t('game.level', { n: this.level }), 44);
-    this.leftText = this.add.text(width - 28, 58, '', { fontFamily: FONT, fontSize: '28px', color: this.ctx.config.colors.textDim })
+    this.leftText = this.add.text(width - 28, 58, '', { fontFamily: FONT, fontSize: '32px', color: this.ctx.config.colors.textDim })
       .setOrigin(1, 0.5);
     button(this, 62, 58, 84, 76, 'II', () => this.pause(), { color: this.ctx.config.colors.buttonAlt, fontSize: 34, name: 'btn-pause' });
 
@@ -647,7 +647,7 @@ export class GameScene extends Phaser.Scene {
     const text = this.add.text(0, -30, this.ctx.t(`hint.${want}`), {
       fontFamily: FONT, fontSize: '32px', color: '#ffffff', align: 'center', wordWrap: { width: 580 }, lineSpacing: 6,
     }).setOrigin(0.5);
-    const tap = this.add.text(0, 112, this.ctx.t('hint.tap'), { fontFamily: FONT, fontSize: '24px', color: this.ctx.config.colors.accent })
+    const tap = this.add.text(0, 112, this.ctx.t('hint.tap'), { fontFamily: FONT, fontSize: '30px', color: this.ctx.config.colors.accent })
       .setOrigin(0.5);
     this.tweens.add({ targets: tap, alpha: 0.4, yoyo: true, repeat: -1, duration: 700 });
     c.add([g, text, tap]);
