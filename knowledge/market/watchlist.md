@@ -24,7 +24,7 @@
 | По Полочкам: Большая Сортировка Предметов | https://yandex.ru/games/ | сортировка | Рейтинг 71; ориентир для новогодней сортировки |
 | Кофейное слияние | https://yandex.ru/games/ | merge | Новинка 2026-11-04; взлетит ли |
 | DONT SPLASH (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | хоррор | Самый быстрый рост в Roblox; появятся ли веб-клоны на Яндексе |
-| Throw Food For Animals (Roblox) | https://www.rotrends.com/game/10766972131/Throw-Food-For-Animals | бросок + коллекция | 5-е по онлайну; сигнал к идее 6 |
+| Throw Food For Animals (Roblox) | https://www.rotrends.com/game/10766972131/Throw-Food-For-Animals | бросок + коллекция | 4-е по онлайну, 354 тыс. на 2026-11-07; сигнал к идее 6 |
 | Potato Peeler Tycoon | https://www.crazygames.com/game/potato-peeler-tycoon | тактильный idle | Новинка ноября, 9,1; сигнал к идее 7 |
 | Steal a Parcel | https://playgama.com/game/steal-a-parcel | steal + idle | Новинка Playgama, схема идеи 2 без яиц |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
