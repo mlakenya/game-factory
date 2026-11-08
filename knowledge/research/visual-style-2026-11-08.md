@@ -142,6 +142,36 @@
 4. Обновить скилл `concept`: разбор функций трендов, таблица «у них — у нас», планка насыщенности, карта первых 10 минут.
 5. Если есть видеокарта — ComfyUI на твоём компьютере и MCP к нему, чтобы Claude генерировал сам.
 
+## 7. ComfyUI на ноутбуке против Nano Banana (дополнение 2026-11-08)
+
+Железо (проверено): ноутбук desktop-ehdmjhs, **RTX 3060 Laptop 6 ГБ**, i5-10200H, 16 ГБ памяти, свободно 370+ ГБ на C: и D:.
+6 ГБ видеопамяти — главное ограничение: крупные новые модели влезают только сжатыми и с выгрузкой в оперативную память.
+
+### Какие модели можно и для чего
+| Модель | Лицензия | Влезает в 6 ГБ | Оценка скорости 1024×1024 |
+|---|---|---|---|
+| **SDXL** (+ ускоряющие LoRA Lightning/Hyper, 4–8 шагов) | OpenRAIL++, коммерция можно | Да | ~6–12 с с ускорением, ~20–35 с обычным режимом в 20 шагов |
+| **FLUX.2 klein 4B** | Apache 2.0 | Впритык, в 4-битном виде | ~20–40 с |
+| Z-Image Turbo | Apache 2.0 | Нет, только с выгрузкой в память | ~40–90 с |
+| FLUX.1 schnell | Apache 2.0 | Нет, только сжатая с выгрузкой | ~30–60 с |
+| FLUX.2 klein 9B, Qwen-Image 2.1 | **Некоммерческие** | — | Не брать |
+
+Скорости — **оценка**, не замер: для настольной RTX 3070 опубликовано ~9 с на SDXL в 20 шагов, для 12-гигабайтных карт ~30–60 с на FLUX
+с выгрузкой; мобильная 3060 слабее настольной. Точные цифры даст пробный прогон.
+
+### Качество
+- **Nano Banana 2 заметно сильнее** в следовании промпту, правке по образцу и одинаковости предметов в серии. В слепом рейтинге
+  Lumenfall даже облегчённая Nano Banana 2 Lite стоит на 20-м месте из 62, а FLUX.1 schnell — на 57-м.
+- **Сильные стороны своей генерации:** без лимитов и значков; огромная библиотека LoRA под SDXL (иконки, мультяшные предметы, интерфейс);
+  прозрачный фон сразу (LayerDiffuse для SDXL); ControlNet (форма по наброску); Claude может сам гонять серии через ComfyUI MCP ночью.
+- **Слабые:** хуже понимает сложные описания, стиль «по картинке» держит хуже; ноутбук в шкафу будет шуметь и греться во время генерации.
+
+### Вывод
+Гибрид: **Nano Banana — доски стиля и ключевые предметы** (качество, правка по образцу), **ComfyUI + SDXL — массовые варианты**
+(иконки, вариации предметов, фоны) в утверждённом стиле, с прозрачным фоном, без лимитов. Перед решением — пробный прогон:
+поставить ComfyUI Portable (~10–15 ГБ с моделями) в `D:`, сгенерировать по 10 картинок SDXL и FLUX.2 klein 4B на промптах «Наряди ёлку»,
+замерить время и положить рядом с картинками из Gemini.
+
 ## Источники
 - Gemini: [справка Google про картинки в Gemini](https://support.google.com/gemini/answer/14286560),
   [форум Google AI: free tier и картинки](https://discuss.ai.google.dev/t/free-tier-api-image-generation/177423),
@@ -151,7 +181,11 @@
   [Google: согласованные изображения в Gemini](https://codelabs.developers.google.com/gemini-consistent-imagery-notebook),
   [Rosebud: спрайт-лист через Nano Banana](https://rosebud.ai/blog/how-to-create-a-sprite-sheet-with-ai-using-google-gemini-and-nano-banana-easy-guide).
 - Другие генераторы: [бесплатные генераторы с коммерческим использованием (обзор)](https://aipedia-en.pages.dev/blog/free-ai-image-generators-commercial-use),
-  [ComfyUI MCP](https://docs.comfy.org/development/mcp).
+  [ComfyUI MCP](https://docs.comfy.org/development/mcp),
+  [локальные модели 2026: VRAM и лицензии](https://www.bestfreewebresources.com/best-local-image-generation-models-2026),
+  [FLUX vs SDXL: скорость по видеокартам](https://dev.to/jovan_chan_9500711396d4e6/flux-vs-sdxl-vs-sd-15-real-cost-per-image-across-gpus-2026-44f8),
+  [Qwen vs FLUX vs SDXL (Botmonster)](https://botmonster.com/ai/best-local-image-generation-models-2026/),
+  [Lumenfall: FLUX.1 schnell vs Nano Banana 2 Lite](https://lumenfall.ai/arena/compare/flux.1-schnell/gemini-3.1-flash-lite-image).
 - Ассеты: [Free 2D sprites and tilesets 2026 (Cinevva)](https://app.cinevva.com/guides/free-2d-sprites-tilesets),
   [47+ сайтов с бесплатными ассетами (Eagle)](https://eagle.cool/blog/post/free-game-assets).
 - Единый стиль из паков: [How to avoid the asset store look (Bugnet)](https://bugnet.io/blog/how-to-avoid-the-asset-store-look),
