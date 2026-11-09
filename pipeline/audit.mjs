@@ -9,6 +9,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, distDir, targetsFromArgs } from './lib.mjs';
 import { stripTarget, targetsFromFlag } from './targets.mjs';
+import { uncredited } from './art-lib.mjs';
 
 const MAX_BYTES = 100 * 1024 * 1024;
 const walk = (d) => readdirSync(d).flatMap((f) => {
@@ -106,6 +107,10 @@ for (const t of targetsFromArgs(stripTarget(rawArgs))) for (const target of plat
     const diff = [...ru].filter((k) => !en.has(k)).concat([...en].filter((k) => !ru.has(k)));
     if (en.size && diff.length) problems.push(`[i18n] ключи не совпадают: ${diff.join(', ')}`);
   }
+
+  // [credits] every file in games/<id>/assets is named in CREDITS.md with its source and licence (skill assets)
+  const missing = uncredited(join(t.path, 'assets'), join(t.path, 'CREDITS.md'));
+  if (missing.length) problems.push(`[credits] в CREDITS.md нет источника для: ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? ' …' : ''}`);
 
   // [console] leftover debug logging
   if (/console\.log\(/.test(gameSrc)) warnings.push('[console] console.log в коде игры');
