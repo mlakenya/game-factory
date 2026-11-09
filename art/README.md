@@ -5,7 +5,7 @@
 ```
 art/<id>/STYLE.md        библия стиля, утверждает человек → статус «стиль одобрен»
 art/<id>/boards/         доски стиля и витрины ассетов для человека
-art/<id>/prompts*.json   промпты генерации (pipeline/art/generate.py)
+art/<id>/jobs/<задание>/  prompts.json и manifest.json (промпт и seed каждой картинки), скилл image-gen
 art/<id>/ASSETS.md       список ассетов из концепта
 art/<id>/assets/         готовые ассеты → статус «ассеты одобрены», потом копируются в games/<id>/assets/
 art/<id>/CREDITS.md      источник и лицензия каждого файла из assets/

@@ -1,16 +1,16 @@
 """Generate game art with FLUX.2 klein 4B through a local ComfyUI (the home laptop).
 
 Runs on the laptop with ComfyUI's own Python, stdlib only:
-  D:\\Gamedev\\tools\\ComfyUI\\python_embeded\\python.exe generate.py art/<id>/prompts.json --out art/<id>/raw
-Start ComfyUI first (keep it running for the whole batch, model reloads are the slow part):
-  python_embeded\\python.exe -s ComfyUI\\main.py --listen 127.0.0.1 --disable-dynamic-vram
+  python.exe generate.py prompts.json --out raw     (in D:\\Gamedev\\art-jobs\\<id>\\<job>)
+Start ComfyUI first with comfy-start.bat and keep it running for the whole batch: model reloads are the slow part.
 
 prompts.json:
   {"style": "<style prefix from STYLE.md>",
    "size": [1024, 1024], "variants": 4,
    "items": [{"name": "ball-red", "prompt": "a single round red glass ball ornament", "variants": 6, "size": [1024, 1024]}]}
 Writes <out>/<name>_<seed>.png and <out>/manifest.json (prompt, seed, seconds per image).
-Only Apache-2.0 klein 4B: the 9B model is non-commercial (see .claude/skills/assets).
+Only Apache-2.0 klein 4B: the 9B model is non-commercial. Process: .claude/skills/image-gen.
+  generate.py --check   verifies that ComfyUI answers and the model files are installed.
 """
 import argparse, json, os, time, urllib.parse, urllib.request, uuid
 
@@ -66,14 +66,37 @@ def run(text, seed, w, h, dest, clip):
     return round(time.time() - t0, 1)
 
 
+def check(clip):
+    """Verify that ComfyUI answers and the approved model files are installed."""
+    stats = json.loads(http("/system_stats"))
+    dev = stats.get("devices", [{}])[0]
+    print(f"ComfyUI {stats.get('system', {}).get('comfyui_version', '?')}, GPU {dev.get('name', '?')}, "
+          f"VRAM free {round(dev.get('vram_free', 0) / 2**30, 1)} GB")
+    need = {"UNETLoader": ("unet_name", UNET), "CLIPLoader": ("clip_name", clip), "VAELoader": ("vae_name", VAE)}
+    missing = []
+    for node, (field, name) in need.items():
+        info = json.loads(http("/object_info/" + node))
+        options = info[node]["input"]["required"][field][0]
+        if name not in options:
+            missing.append(name)
+    if missing:
+        raise SystemExit("MISSING models: " + ", ".join(missing))
+    print("OK")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("prompts")
-    ap.add_argument("--out", required=True)
+    ap.add_argument("prompts", nargs="?")
+    ap.add_argument("--check", action="store_true", help="only verify ComfyUI and the model files")
+    ap.add_argument("--out")
     ap.add_argument("--only", help="comma-separated item names")
     ap.add_argument("--seed", type=int, default=1000)
     ap.add_argument("--clip", default=CLIP, help="text encoder file, e.g. qwen_3_4b_fp8_mixed.safetensors to save RAM")
     a = ap.parse_args()
+    if a.check:
+        return check(a.clip)
+    if not a.prompts or not a.out:
+        ap.error("prompts.json and --out are required")
     spec = json.load(open(a.prompts, encoding="utf-8"))
     only = set(a.only.split(",")) if a.only else None
     os.makedirs(a.out, exist_ok=True)
