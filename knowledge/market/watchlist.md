@@ -15,6 +15,7 @@
 | Ragdoll-песочницы | Три ragdoll-игры в трендах Roblox; на Яндексе Melon Sandbox (16+) | 2026-11-05 |
 | Прятки / камуфляж | Paint and Hide и MIMIC растут в Roblox, Obby: Chameleon в трендах Playgama | 2026-11-06 |
 | «+1 за клик» | Три игры в Top Growth Playgama, +1 Spider Arm в Roblox | 2026-11-06 |
+| Зимние темы | Snowball Rush — первый зимний хит в Hot CrazyGames; ждём новогодних подборок | 2026-11-09 |
 | Тактильный idle (чистить, резать, расчищать) | Potato Peeler Tycoon 9,1 на CrazyGames, Waste to Wow! в Top Growth Playgama | 2026-11-07 |
 
 ## Игры
@@ -27,6 +28,8 @@
 | Throw Food For Animals (Roblox) | https://www.rotrends.com/game/10766972131/Throw-Food-For-Animals | бросок + коллекция | 4-е по онлайну, 354 тыс. на 2026-11-07; сигнал к идее 6 |
 | Potato Peeler Tycoon | https://www.crazygames.com/game/potato-peeler-tycoon | тактильный idle | Новинка ноября, 9,1; сигнал к идее 7 |
 | Steal a Parcel | https://playgama.com/game/steal-a-parcel | steal + idle | Новинка Playgama, схема идеи 2 без яиц |
+| Snowball Rush | https://www.crazygames.com/de/game/snowball-rush-tcp | зимний симулятор | 9,3 в Hot CrazyGames; сигнал к идее 8 |
+| Rob a Garden | https://www.crazygames.com/game/rob-a-garden | steal + idle | 9,2 в Hot CrazyGames, схема идеи 2 на садах |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
 
 ## Разработчики
