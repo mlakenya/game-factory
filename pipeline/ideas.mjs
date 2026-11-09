@@ -9,6 +9,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, fail } from './lib.mjs';
 import { STATUSES, nextId, parseIdeas, setStatus, validateIdeas } from './ideas-lib.mjs';
+import { artAssetProblems } from './art-lib.mjs';
 
 export const IDEAS = join(ROOT, 'knowledge/ideas.md');
 const CONCEPTS = join(ROOT, 'knowledge/concepts');
@@ -30,6 +31,8 @@ export function checkIdeas() {
       conceptExists: (s) => existsSync(conceptPath(s)),
       conceptIdeaId: (s) => readFileSync(conceptPath(s), 'utf8').match(/\*\*Идея:\*\*\s*(\d+)/)?.[1] ?? null,
       games,
+      styleExists: (s) => existsSync(join(ROOT, 'art', s, 'STYLE.md')),
+      assetProblems: (s) => artAssetProblems(ROOT, s),
     }),
   );
 }

@@ -1,12 +1,18 @@
 // Parser and validator for the idea registry (knowledge/ideas.md).
 // The registry is the single source of truth for an idea's stage:
-// идея → концепт → одобрен → в разработке → выпущена (or отклонена / отложена).
+// идея → концепт → одобрен → стиль одобрен → ассеты одобрены → в разработке → выпущена (or отклонена / отложена).
 
 /** Allowed statuses, in pipeline order. */
-export const STATUSES = ['идея', 'концепт', 'одобрен', 'в разработке', 'выпущена', 'отклонена', 'отложена'];
+export const STATUSES = ['идея', 'концепт', 'одобрен', 'стиль одобрен', 'ассеты одобрены', 'в разработке', 'выпущена', 'отклонена', 'отложена'];
 
 /** Statuses that require a concept file (knowledge/concepts/<slug>.md). */
-export const NEEDS_CONCEPT = ['концепт', 'одобрен', 'в разработке', 'выпущена'];
+export const NEEDS_CONCEPT = ['концепт', 'одобрен', 'стиль одобрен', 'ассеты одобрены', 'в разработке', 'выпущена'];
+
+/** Statuses that require the approved style bible art/<slug>/STYLE.md. */
+export const NEEDS_STYLE = ['стиль одобрен', 'ассеты одобрены'];
+
+/** Statuses that require approved assets in art/<slug>/assets/ listed in art/<slug>/CREDITS.md. */
+export const NEEDS_ASSETS = ['ассеты одобрены'];
 
 /** Statuses that allow games/<slug> to exist. */
 export const GAME_STATUSES = ['в разработке', 'выпущена'];
@@ -63,7 +69,8 @@ export function parseIdeas(md) {
 /**
  * Validate parsed rows against the file system.
  * @param {ReturnType<typeof parseIdeas>['rows']} rows
- * @param {{ conceptExists: (slug:string)=>boolean, conceptIdeaId: (slug:string)=>string|null, games: string[] }} fs
+ * @param {{ conceptExists: (slug:string)=>boolean, conceptIdeaId: (slug:string)=>string|null, games: string[],
+ *   styleExists?: (slug:string)=>boolean, assetProblems?: (slug:string)=>string[] }} fs
  * @returns {string[]} errors
  */
 export function validateIdeas(rows, fs) {
@@ -84,6 +91,10 @@ export function validateIdeas(rows, fs) {
       if (!fs.conceptExists(r.concept)) errors.push(`${at}: нет файла knowledge/concepts/${r.concept}.md`);
       else if (fs.conceptIdeaId(r.concept) !== r.id)
         errors.push(`${at}: в knowledge/concepts/${r.concept}.md должна быть строка **Идея:** ${r.id}`);
+      if (NEEDS_STYLE.includes(r.status) && fs.styleExists && !fs.styleExists(r.concept))
+        errors.push(`${at}: статус «${r.status}» требует утверждённую библию стиля art/${r.concept}/STYLE.md (скилл art-style)`);
+      if (NEEDS_ASSETS.includes(r.status) && fs.assetProblems)
+        for (const p of fs.assetProblems(r.concept)) errors.push(`${at}: ${p}`);
     } else if (NEEDS_CONCEPT.includes(r.status)) {
       errors.push(`${at}: статус «${r.status}» требует концепт в колонке «Концепт»`);
     }

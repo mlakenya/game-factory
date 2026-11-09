@@ -49,6 +49,16 @@ describe('idea registry', () => {
     expect(validateIdeas(dev, fs({ games: ['a-game'] }))).toEqual([]);
   });
 
+  it('requires the style bible and credited assets for the art statuses', () => {
+    const style = parseIdeas(md('| 1 | A | стиль одобрен | — | [a-game](concepts/a-game.md) | — |')).rows;
+    expect(validateIdeas(style, fs({ styleExists: () => false })).join()).toMatch(/art\/a-game\/STYLE\.md/);
+    expect(validateIdeas(style, fs({ styleExists: () => true }))).toEqual([]);
+    const assets = parseIdeas(md('| 1 | A | ассеты одобрены | — | [a-game](concepts/a-game.md) | — |')).rows;
+    const errs = validateIdeas(assets, fs({ styleExists: () => true, assetProblems: () => ['нет ассетов'] }));
+    expect(errs.join()).toMatch(/нет ассетов/);
+    expect(validateIdeas(assets, fs({ styleExists: () => true, assetProblems: () => [] }))).toEqual([]);
+  });
+
   it('gives the next id and changes status in place', () => {
     const text = md('| 1 | A | идея | — | — | — |\n| 7 | B | идея | — | — | x |');
     expect(nextId(parseIdeas(text).rows)).toBe('8');
