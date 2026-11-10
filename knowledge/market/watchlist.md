@@ -26,6 +26,8 @@
 | Кофейное слияние | https://yandex.ru/games/ | merge | Новинка 2026-11-04; взлетит ли |
 | DONT SPLASH (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | хоррор | Самый быстрый рост в Roblox; появятся ли веб-клоны на Яндексе |
 | Throw Food For Animals (Roblox) | https://www.rotrends.com/game/10766972131/Throw-Food-For-Animals | бросок + коллекция | 4-е по онлайну, 354 тыс. на 2026-11-07; сигнал к идее 6 |
+| Lumber Harvest Tree Cutting Game | https://www.crazygames.com/game/lumber-harvest-tree-cutting-game | idle-расчистка | 9,2 и 94 тыс. лайков в Hot; сигнал к идее 9 |
+| Sweep The Moon / Clean the Moon (Roblox) | https://rowatcher.com/games/10770466814/clean-the-moon | idle-уборка | ▲53 в трендах 2026-11-10; сигнал к идее 9 |
 | Potato Peeler Tycoon | https://www.crazygames.com/game/potato-peeler-tycoon | тактильный idle | Новинка ноября, 9,1; сигнал к идее 7 |
 | Steal a Parcel | https://playgama.com/game/steal-a-parcel | steal + idle | Новинка Playgama, схема идеи 2 без яиц |
 | Snowball Rush | https://www.crazygames.com/de/game/snowball-rush-tcp | зимний симулятор | 9,3 в Hot CrazyGames; сигнал к идее 8 |
