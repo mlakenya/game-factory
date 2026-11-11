@@ -32,6 +32,8 @@
 | Steal a Parcel | https://playgama.com/game/steal-a-parcel | steal + idle | Новинка Playgama, схема идеи 2 без яиц |
 | Snowball Rush | https://www.crazygames.com/de/game/snowball-rush-tcp | зимний симулятор | 9,3 в Hot CrazyGames; сигнал к идее 8 |
 | Rob a Garden | https://www.crazygames.com/game/rob-a-garden | steal + idle | 9,2 в Hot CrazyGames, схема идеи 2 на садах |
+| Snow Plow Tycoon | https://www.crazygames.com/game/snow-plow-tycoon-ewm | зимний idle-расчистка | Новинка ноября, 8,9; прямой конкурент идеи 9 |
+| Shred the Evidence | https://www.crazygames.com/game/shred-the-evidence | тактильный idle | 9,6 в Hot, перегрев как риск; сигнал к идее 10 |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
 
 ## Разработчики
