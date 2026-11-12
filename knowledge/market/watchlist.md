@@ -34,6 +34,8 @@
 | Rob a Garden | https://www.crazygames.com/game/rob-a-garden | steal + idle | 9,2 в Hot CrazyGames, схема идеи 2 на садах |
 | Snow Plow Tycoon | https://www.crazygames.com/game/snow-plow-tycoon-ewm | зимний idle-расчистка | Новинка ноября, 8,9; прямой конкурент идеи 9 |
 | Shred the Evidence | https://www.crazygames.com/game/shred-the-evidence | тактильный idle | 9,6 в Hot, перегрев как риск; сигнал к идее 10 |
+| Bid Boss | https://www.crazygames.com/game/bid-boss | аукцион + бизнес | 3-я в Hot, осмотр фонариком и подделки; сигнал к идее 12 |
+| Tidebound Salvage | https://www.crazygames.com/game/tidebound-salvage | буксир на тросе | 9,2, New и Hot, только десктоп; сигнал к идее 11 |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
 
 ## Разработчики
