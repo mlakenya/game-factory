@@ -1,0 +1,847 @@
+{
+ "style": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes,",
+ "size": [
+  1024,
+  1024
+ ],
+ "variants": 4,
+ "items": [
+  {
+   "name": "cat-murzik-battle",
+   "prompt": "a single chubby orange tabby cat sumo wrestler character, wearing a red mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-murzik-ring",
+   "prompt": "a single wet grumpy chubby orange tabby cat wearing a red mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-murzik-win",
+   "prompt": "a single chubby orange tabby cat sumo wrestler character, wearing a red mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pushinka-battle",
+   "prompt": "a single small slim fluffy white cat with big blue eyes sumo wrestler character, wearing a pink mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pushinka-ring",
+   "prompt": "a single wet grumpy small slim fluffy white cat with big blue eyes wearing a pink mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pushinka-win",
+   "prompt": "a single small slim fluffy white cat with big blue eyes sumo wrestler character, wearing a pink mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-baton-battle",
+   "prompt": "a single very fat round grey cat sumo wrestler character, wearing a blue mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-baton-ring",
+   "prompt": "a single wet grumpy very fat round grey cat wearing a blue mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-baton-win",
+   "prompt": "a single very fat round grey cat sumo wrestler character, wearing a blue mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ledokol-battle",
+   "prompt": "a single stocky black cat with a scar over one eye sumo wrestler character, wearing a yellow mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ledokol-ring",
+   "prompt": "a single wet grumpy stocky black cat with a scar over one eye wearing a yellow mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ledokol-win",
+   "prompt": "a single stocky black cat with a scar over one eye sumo wrestler character, wearing a yellow mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-lipuchka-battle",
+   "prompt": "a single calico cat with big visible claws sumo wrestler character, wearing a purple mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-lipuchka-ring",
+   "prompt": "a single wet grumpy calico cat with big visible claws wearing a purple mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-lipuchka-win",
+   "prompt": "a single calico cat with big visible claws sumo wrestler character, wearing a purple mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pelmen-battle",
+   "prompt": "a single very round cream colored cat with tiny ears sumo wrestler character, wearing a green mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pelmen-ring",
+   "prompt": "a single wet grumpy very round cream colored cat with tiny ears wearing a green mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-pelmen-win",
+   "prompt": "a single very round cream colored cat with tiny ears sumo wrestler character, wearing a green mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ugolek-battle",
+   "prompt": "a single lean sleek dark grey cat with yellow eyes sumo wrestler character, wearing a orange mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ugolek-ring",
+   "prompt": "a single wet grumpy lean sleek dark grey cat with yellow eyes wearing a orange mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-ugolek-win",
+   "prompt": "a single lean sleek dark grey cat with yellow eyes sumo wrestler character, wearing a orange mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-tigra-battle",
+   "prompt": "a single muscular brown striped tiger-like cat sumo wrestler character, wearing a black mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-tigra-ring",
+   "prompt": "a single wet grumpy muscular brown striped tiger-like cat wearing a black mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-tigra-win",
+   "prompt": "a single muscular brown striped tiger-like cat sumo wrestler character, wearing a black mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-sfinks-battle",
+   "prompt": "a single hairless pink sphynx cat with big ears sumo wrestler character, wearing a teal mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-sfinks-ring",
+   "prompt": "a single wet grumpy hairless pink sphynx cat with big ears wearing a teal mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-sfinks-win",
+   "prompt": "a single hairless pink sphynx cat with big ears sumo wrestler character, wearing a teal mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-burkun-battle",
+   "prompt": "a single huge fluffy brown maine coon cat with ear tufts sumo wrestler character, wearing a dark red mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-burkun-ring",
+   "prompt": "a single wet grumpy huge fluffy brown maine coon cat with ear tufts wearing a dark red mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-burkun-win",
+   "prompt": "a single huge fluffy brown maine coon cat with ear tufts sumo wrestler character, wearing a dark red mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-marmelad-battle",
+   "prompt": "a single ginger and white bicolor cat with a cheeky grin sumo wrestler character, wearing a light blue mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-marmelad-ring",
+   "prompt": "a single wet grumpy ginger and white bicolor cat with a cheeky grin wearing a light blue mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-marmelad-win",
+   "prompt": "a single ginger and white bicolor cat with a cheeky grin sumo wrestler character, wearing a light blue mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-polyarnik-battle",
+   "prompt": "a single rare snow white arctic cat with a pale blue frosty tail sumo wrestler character, wearing a silver mawashi belt, full body, wide sumo stance ready to charge, seen from slightly above, three-quarter top-down view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-polyarnik-ring",
+   "prompt": "a single wet grumpy rare snow white arctic cat with a pale blue frosty tail wearing a silver mawashi belt, floating in a yellow inflatable swim ring, water drops, comic and harmless, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "cat-polyarnik-win",
+   "prompt": "a single rare snow white arctic cat with a pale blue frosty tail sumo wrestler character, wearing a silver mawashi belt, full body, happy victory pose with both paws raised, facing the viewer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-hachimaki",
+   "prompt": "a single a white hachimaki headband with a red circle, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-straw",
+   "prompt": "a single a round straw hat, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-ushanka",
+   "prompt": "a single a fluffy brown ushanka fur hat, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-beanie",
+   "prompt": "a single a striped winter bobble beanie, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-crown",
+   "prompt": "a single a small golden crown with gems, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-viking",
+   "prompt": "a single a horned viking helmet, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-sailor",
+   "prompt": "a single a white sailor cap, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hat-wreath",
+   "prompt": "a single a flower wreath, game cosmetic item, front view, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ice-hex",
+   "prompt": "a single flat hexagonal tile of pale blue-white sea ice seen from directly above, flat top surface with soft highlights, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ice-hex-cracked",
+   "prompt": "a single flat hexagonal tile of pale blue-white sea ice seen from directly above, flat top surface with soft highlights, a few thin white cracks across the surface, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ice-hex-broken",
+   "prompt": "a single flat hexagonal tile of pale blue-white sea ice seen from directly above, flat top surface with soft highlights, deep wide cracks across the whole surface, about to break, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ice-hex-sinking",
+   "prompt": "a single hexagonal tile of sea ice broken into several pieces sinking into dark blue water, seen from directly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ice-hole",
+   "prompt": "a single round ice fishing hole in pale blue ice with dark blue water inside, seen from directly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "fish",
+   "prompt": "a single shiny silver blue fish lying on its side, juicy and appetizing, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "fish-gold",
+   "prompt": "a single shiny golden fish lying on its side, sparkles, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "seal",
+   "prompt": "a single cute chubby grey seal character, mischievous, full body, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "iceberg",
+   "prompt": "a single small white and pale blue iceberg floating, seen from slightly above, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "sun",
+   "prompt": "a single warm smiling cartoon sun with short rays, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "wave",
+   "prompt": "a single curling blue sea wave with white foam, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "bg-yard",
+   "prompt": "a top-down game background of a frozen puddle in a snowy village yard with a wooden fence and a small house corner at the edges, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-pond",
+   "prompt": "a top-down game background of a pond with dark blue water, snowy banks and reeds at the edges, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-lake",
+   "prompt": "a top-down game background of a wide lake with deep blue water, snowy pine forest at the edges, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-river",
+   "prompt": "a top-down game background of a river with flowing blue water and current lines, snowy banks with rocks at the edges, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-sea",
+   "prompt": "a top-down game background of the open sea with deep blue waves and a distant lighthouse at the edge, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-pole",
+   "prompt": "a top-down game background of the arctic ocean with dark blue water, small icebergs and a green aurora at the top, water seen from above, winter daytime, large empty water area in the center for gameplay, no characters, no ice floe in the center, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "bg-map",
+   "prompt": "a vertical winding path game map from a snowy village yard at the bottom through a pond, a lake, a river and the sea to the north pole with an igloo at the top, top-down view, no characters, no text",
+   "variants": 3,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "button-orange",
+   "prompt": "a rounded chunky game UI button, orange, flat with a darker bottom edge, empty, no icon, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "button-blue",
+   "prompt": "a rounded chunky game UI button, blue, flat with a darker bottom edge, empty, no icon, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "button-green",
+   "prompt": "a rounded chunky game UI button, green, flat with a darker bottom edge, empty, no icon, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "button-grey",
+   "prompt": "a rounded chunky game UI button, grey, flat with a darker bottom edge, empty, no icon, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "panel",
+   "prompt": "a rounded rectangular game UI panel, very light icy blue, thick navy outline, empty, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "ribbon",
+   "prompt": "a game UI title ribbon banner, red with folded ends, empty, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-coin",
+   "prompt": "a simple bold game icon of a gold coin with a paw print, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-fish",
+   "prompt": "a simple bold game icon of a small blue fish, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-trophy",
+   "prompt": "a simple bold game icon of a golden trophy cup, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-belt",
+   "prompt": "a simple bold game icon of a golden champion sumo belt, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-lock",
+   "prompt": "a simple bold game icon of a padlock, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-star",
+   "prompt": "a simple bold game icon of a yellow star, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-calendar",
+   "prompt": "a simple bold game icon of a calendar page with a paw, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-puzzle",
+   "prompt": "a simple bold game icon of a puzzle piece with a cat ear shape, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-video",
+   "prompt": "a simple bold game icon of a video play button screen, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-gear",
+   "prompt": "a simple bold game icon of a settings gear, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-sound",
+   "prompt": "a simple bold game icon of a speaker with sound waves, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-mute",
+   "prompt": "a simple bold game icon of a crossed out speaker, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-pause",
+   "prompt": "a simple bold game icon of a pause symbol, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-play",
+   "prompt": "a simple bold game icon of a play triangle, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-home",
+   "prompt": "a simple bold game icon of a small house, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-shop",
+   "prompt": "a simple bold game icon of a shopping bag, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-dash",
+   "prompt": "a simple bold game icon of a lightning bolt arrow, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-claws",
+   "prompt": "a simple bold game icon of three sharp cat claws, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-fur",
+   "prompt": "a simple bold game icon of a fluffy fur coat, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-check",
+   "prompt": "a simple bold game icon of a green check mark, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-close",
+   "prompt": "a simple bold game icon of a red X cross, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "icon-arrow",
+   "prompt": "a simple bold game icon of a right arrow, thick outline, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "hand",
+   "prompt": "a single cartoon white glove hand pointing with index finger, tutorial pointer, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "fx-splash",
+   "prompt": "a single big water splash with drops, blue and white, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "fx-impact",
+   "prompt": "a single comic impact burst star, yellow and white, isolated on plain solid magenta background, centered, no text",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  }
+ ]
+}

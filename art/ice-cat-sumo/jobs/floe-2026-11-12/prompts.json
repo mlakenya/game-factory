@@ -1,0 +1,37 @@
+{
+ "style": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes,",
+ "size": [
+  1024,
+  1024
+ ],
+ "variants": 4,
+ "items": [
+  {
+   "name": "floe",
+   "prompt": "a single big thick floating ice floe slab in isometric view, chunky 3D block of ice with visible thick side walls, irregular rounded oval outline, wide flat pale icy top surface with a little snow on the rim, centered, plain flat solid magenta background, no text, no characters",
+   "variants": 4,
+   "size": [
+    1344,
+    768
+   ]
+  },
+  {
+   "name": "floe-cracked",
+   "prompt": "a single big thick floating ice floe slab in isometric view, chunky 3D block of ice with visible thick side walls, wide flat pale icy top surface covered with long white cracks, one small corner broken off, centered, plain flat solid magenta background, no text, no characters",
+   "variants": 4,
+   "size": [
+    1344,
+    768
+   ]
+  },
+  {
+   "name": "floe-chunk",
+   "prompt": "a single small broken chunk of thick ice in isometric view, 3D block with visible side walls, jagged edges, centered, plain flat solid magenta background, no text, no characters",
+   "variants": 4,
+   "size": [
+    1024,
+    1024
+   ]
+  }
+ ]
+}
