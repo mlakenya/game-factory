@@ -1,0 +1,98 @@
+[
+ {
+  "file": "floe-round_1000.png",
+  "name": "floe-round",
+  "seed": 1000,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, soft wavy natural round edge, wide flat pale icy top surface with a little snow on the rim, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 197.6
+ },
+ {
+  "file": "floe-round_1001.png",
+  "name": "floe-round",
+  "seed": 1001,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, soft wavy natural round edge, wide flat pale icy top surface with a little snow on the rim, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 214.5
+ },
+ {
+  "file": "floe-round_1002.png",
+  "name": "floe-round",
+  "seed": 1002,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, soft wavy natural round edge, wide flat pale icy top surface with a little snow on the rim, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 8.7
+ },
+ {
+  "file": "floe-round_1003.png",
+  "name": "floe-round",
+  "seed": 1003,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, soft wavy natural round edge, wide flat pale icy top surface with a little snow on the rim, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 8.1
+ },
+ {
+  "file": "floe-round-cracked_1000.png",
+  "name": "floe-round-cracked",
+  "seed": 1000,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, wide flat pale icy top surface with long white cracks running across it, a small piece broken off the edge, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 90.1
+ },
+ {
+  "file": "floe-round-cracked_1001.png",
+  "name": "floe-round-cracked",
+  "seed": 1001,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, wide flat pale icy top surface with long white cracks running across it, a small piece broken off the edge, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 10.3
+ },
+ {
+  "file": "floe-round-cracked_1002.png",
+  "name": "floe-round-cracked",
+  "seed": 1002,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, wide flat pale icy top surface with long white cracks running across it, a small piece broken off the edge, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 7.9
+ },
+ {
+  "file": "floe-round-cracked_1003.png",
+  "name": "floe-round-cracked",
+  "seed": 1003,
+  "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single big round ice floe shaped like a wide flat disc, seen from above at a 30 degree angle so the circle looks like a wide ellipse, thick 3D side wall of ice visible below the rim, wide flat pale icy top surface with long white cracks running across it, a small piece broken off the edge, centered, plain flat solid magenta background, no text, no characters",
+  "size": [
+   1344,
+   768
+  ],
+  "model": "flux-2-klein-4b-fp8.safetensors",
+  "seconds": 8.0
+ }
+]
