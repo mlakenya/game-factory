@@ -1,0 +1,253 @@
+{
+ "style": "",
+ "size": [
+  1024,
+  1024
+ ],
+ "variants": 3,
+ "items": [
+  {
+   "name": "a-cat-murzik",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single chubby orange tabby cat sumo wrestler character, full body, wide sumo stance, wearing a red mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-cat-baton",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single very fat round grey cat sumo wrestler character, full body, heavy and proud, wearing a blue mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-cat-pushinka",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single small slim fluffy white cat character, full body, light pose on tiptoes, wearing a pink mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-cat-ring",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single wet grumpy orange tabby cat floating in a yellow inflatable swim ring, comic and harmless, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-ice-tile",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single hexagonal tile of thick blue-white sea ice seen from above, flat top surface with soft highlights, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-ice-cracked",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single hexagonal tile of thick blue-white sea ice seen from above, deep white cracks across the surface, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-fish",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a single small shiny silver fish snack, cute, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "a-button",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a rounded game UI button, icy blue, glossy, empty, no text, no icon, plain flat pastel pink background",
+   "variants": 3,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "a-bg-sea",
+   "prompt": "Flat vector sticker illustration for a casual mobile game, thick dark navy outline, flat bright colors, simple cel shading, cute chunky shapes, a cold sea game background seen from above, dark blue water with soft waves, small floating ice pieces only at the edges, empty center area for gameplay, no characters, no text",
+   "variants": 2,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "b-cat-murzik",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single chubby orange tabby cat sumo wrestler character, full body, wide sumo stance, wearing a red mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-cat-baton",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single very fat round grey cat sumo wrestler character, full body, heavy and proud, wearing a blue mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-cat-pushinka",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single small slim fluffy white cat character, full body, light pose on tiptoes, wearing a pink mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-cat-ring",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single wet grumpy orange tabby cat floating in a yellow inflatable swim ring, comic and harmless, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-ice-tile",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single hexagonal tile of thick blue-white sea ice seen from above, flat top surface with soft highlights, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-ice-cracked",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single hexagonal tile of thick blue-white sea ice seen from above, deep white cracks across the surface, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-fish",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a single small shiny silver fish snack, cute, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "b-button",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a rounded game UI button, icy blue, glossy, empty, no text, no icon, plain flat pastel pink background",
+   "variants": 3,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "b-bg-sea",
+   "prompt": "Soft 3D clay render for a casual mobile game, plasticine material with fingerprints, rounded chunky shapes, soft studio light, pastel colors, cute, no outline, a cold sea game background seen from above, dark blue water with soft waves, small floating ice pieces only at the edges, empty center area for gameplay, no characters, no text",
+   "variants": 2,
+   "size": [
+    768,
+    1344
+   ]
+  },
+  {
+   "name": "c-cat-murzik",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single chubby orange tabby cat sumo wrestler character, full body, wide sumo stance, wearing a red mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-cat-baton",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single very fat round grey cat sumo wrestler character, full body, heavy and proud, wearing a blue mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-cat-pushinka",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single small slim fluffy white cat character, full body, light pose on tiptoes, wearing a pink mawashi belt, facing the viewer, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-cat-ring",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single wet grumpy orange tabby cat floating in a yellow inflatable swim ring, comic and harmless, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-ice-tile",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single hexagonal tile of thick blue-white sea ice seen from above, flat top surface with soft highlights, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-ice-cracked",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single hexagonal tile of thick blue-white sea ice seen from above, deep white cracks across the surface, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-fish",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a single small shiny silver fish snack, cute, centered, plain flat pastel pink background, no text",
+   "variants": 3,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "name": "c-button",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a rounded game UI button, icy blue, glossy, empty, no text, no icon, plain flat pastel pink background",
+   "variants": 3,
+   "size": [
+    1024,
+    512
+   ]
+  },
+  {
+   "name": "c-bg-sea",
+   "prompt": "Hand-painted gouache illustration for a casual mobile game, visible brush texture, thin dark ink outline, Japanese woodblock print influence, muted indigo and warm paper colors, cute, a cold sea game background seen from above, dark blue water with soft waves, small floating ice pieces only at the edges, empty center area for gameplay, no characters, no text",
+   "variants": 2,
+   "size": [
+    768,
+    1344
+   ]
+  }
+ ]
+}
