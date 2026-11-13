@@ -36,6 +36,8 @@
 | Shred the Evidence | https://www.crazygames.com/game/shred-the-evidence | тактильный idle | 9,6 в Hot, перегрев как риск; сигнал к идее 10 |
 | Bid Boss | https://www.crazygames.com/game/bid-boss | аукцион + бизнес | 3-я в Hot, осмотр фонариком и подделки; сигнал к идее 12 |
 | Tidebound Salvage | https://www.crazygames.com/game/tidebound-salvage | буксир на тросе | 9,2, New и Hot, только десктоп; сигнал к идее 11 |
+| Bring Back the Lake | https://www.crazygames.com/game/bring-back-the-lake | idle-восстановление | Новинка ноября, 9,0, плотные системы; сигнал к идее 13 |
+| Throw Foods For Pets | https://playgama.com/game/throw-foods-for-pets | бросок + коллекция | Новинка Playgama, схема идеи 6 на вебе |
 | Sell Fries! (Roblox) | https://www.ggrecon.com/articles/fastest-growing-new-roblox-games-november-2026/ | лавка + хоррор | Сигнал к идее 4 |
 
 ## Разработчики
